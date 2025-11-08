@@ -1,0 +1,315 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  color: #333;
+  background-color: #fdfdfd;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* header */
+header {
+  background-color: #0e3959;
+  color: #fff;
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 5000;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+nav a:hover {
+  color: #ffca25;
+}
+
+/* home */
+#home {
+  position: relative;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+.home-content {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  text-align: center;
+}
+
+.home-content h2 {
+  font-size: 3.1rem;
+  margin-bottom: 15px;
+}
+.home-content p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+.home-content .btn {
+  background: #ffca28;
+  color: #0e3959;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* alignment */
+section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+section .container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+/* destinations */
+
+#destinations {
+  padding: 80px 0;
+  background-color: #fdfdfd;
+  text-align: center;
+}
+#destinations h2 {
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  color: #222;
+  text-decoration: underline;
+}
+
+.destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 25px;
+  justify-content: center;
+}
+.destinations-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.destinations-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.destinations-card h3 {
+  padding: 15px;
+  font-size: 1.4rem;
+  color: #333;
+  background: #fff;
+}
+
+.destinations-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* packages section css */
+
+#packages {
+  padding: 80px 0;
+  background: #fff;
+  text-align: center;
+}
+
+#packages h2 {
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  color: #222;
+  text-decoration: underline;
+}
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 25px;
+  justify-content: center;
+}
+
+.package {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.package img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.package h3 {
+  margin: 10px 0;
+  font-size: 1.2rem;
+  color: #0e3959;
+}
+.package p {
+  padding: 10px 10px;
+  color: #333;
+  font-size: 1rem;
+}
+.package:hover {
+  transform: translateY(-5px);
+}
+.package button {
+  background: #0e3959;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  margin-bottom: 17px;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3 ease;
+}
+
+.package button:hover {
+  background: #ffca28;
+  color: #0e3959;
+  transform: scale(1);
+}
+
+/* testimonials section css */
+
+#testimonials {
+  padding: 60px 0;
+}
+
+#testimonials h2 {
+  text-align: center;
+  color: #0e3959;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-decoration: underline;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 25px;
+}
+
+.testimonial {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  text-align: center;
+}
+.testimonial i {
+  color: #ffca28;
+  margin-bottom: 12px;
+}
+.testimonial p {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+.testimonial h4 {
+  color: #0e3959;
+  margin-top: 10px;
+}
+
+/* booking css */
+#booking {
+  padding: 60px 0;
+  background: #fdfdfd;
+}
+#booking h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #0e3959;
+}
+#booking p {
+  text-align: center;
+  margin-bottom: 20px;
+}
+form {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+form button {
+  background: #0e3959;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+form button:hover {
+  background: #ffca28;
+  color: #0e3959;
+}
+
+footer iframe {
+  width: 100%;
+  border: none;
+  height: 300px;
+}

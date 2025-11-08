@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21-days-project-1</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- link for font awesome and poppins -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- header start from  here -->
+    <header role="banner">
+      <div class="container">
+        <nav role="navigation" aria-label="main navigation">
+          <h1>ExploreWorld</h1>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#destination">Destinations</a></li>
+            <li><a href="#destination">Packages</a></li>
+            <li><a href="#destination">Testimonials</a></li>
+            <li><a href="#destination">Book Now</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- header ends from  here -->
+
+    <!-- hero section stars here -->
+    <section id="home" role="region" aria-label="home section">
+      <video
+        class="bg-video"
+        src="https://www.pexels.com/download/video/3015510/"
+        autoplay
+        loop
+        muted
+        playsinline
+      ></video>
+      <div class="overlay"></div>
+      <div class="home-content container">
+        <h2>Discover Your Next Adventure</h2>
+        <p>
+          Explore breathtaking destinations around the world and create memories
+          that last a lifetime.
+        </p>
+        <a href="#packages" class="btn" aria-label="Packages">
+          Explore Packages
+        </a>
+      </div>
+    </section>
+    <!-- hero section end here -->
+    <!-- destinations section start -->
+
+    <section
+      id="destinations"
+      class="section"
+      role="region"
+      aria-label="destinations section"
+    >
+      <div class="container">
+        <h2 id="destinations-heading">Popular Destinations</h2>
+        <div class="destinations-grid">
+          <article class="destinations-card">
+            <img
+              src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=80"
+              alt="jaipur"
+            />
+            <h3>Paris, France</h3>
+          </article>
+          <article class="destinations-card">
+            <img
+              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+              alt="jaipur"
+            />
+            <h3>Paris, France</h3>
+          </article>
+          <article class="destinations-card">
+            <img
+              src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=80"
+              alt="jaipur"
+            />
+            <h3>Paris, France</h3>
+          </article>
+          <article class="destinations-card">
+            <img
+              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+              alt="jaipur"
+            />
+            <h3>Paris, France</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- destinations section ends here -->
+    <!-- packages section starts from here -->
+
+    <section
+      id="packages"
+      class="section"
+      role="region"
+      aria-label="packages section"
+    >
+      <div class="container">
+        <h2 id="packages-heading">Our Packages</h2>
+        <div class="packages-grid" role="listitem">
+          <article class="package" role="listitem">
+            <img
+              src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=800&q=80"
+              alt="Europe scenic travel package"
+            />
+            <h3>Europe Explorer</h3>
+            <p>10 Days | Starting from $1200</p>
+            <button aria-label="Book Europe Explorer package">Book Now</button>
+          </article>
+          <article class="package" role="listitem">
+            <img
+              src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=800&q=80"
+              alt="Europe scenic travel package"
+            />
+            <h3>Europe Explorer</h3>
+            <p>10 Days | Starting from $1200</p>
+            <button aria-label="Book Europe Explorer package">Book Now</button>
+          </article>
+          <article class="package" role="listitem">
+            <img
+              src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=800&q=80"
+              alt="Europe scenic travel package"
+            />
+            <h3>Europe Explorer</h3>
+            <p>10 Days | Starting from $1200</p>
+            <button aria-label="Book Europe Explorer package">Book Now</button>
+          </article>
+          <article class="package" role="listitem">
+            <img
+              src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=800&q=80"
+              alt="Europe scenic travel package"
+            />
+            <h3>Europe Explorer</h3>
+            <p>10 Days | Starting from $1200</p>
+            <button aria-label="Book Europe Explorer package">Book Now</button>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- packages section ends  here -->
+    <!-- testimonials sections starts here -->
+    <section
+      id="testimonials"
+      class="section"
+      role="region"
+      aria-label="testimonials section"
+    >
+      <div class="container">
+        <h2 id="testimonials-heading">What Our Travelers Say</h2>
+        <div class="testimonials-grid" role="list">
+          <blockquote class="testimonial">
+            <i class="fa-solid fa-quote-left fa-2x"></i>
+            <p>
+              “ExploreWorld made our honeymoon unforgettable! Everything was
+              perfectly arranged.”
+            </p>
+            <h4>- Vikas Thakur</h4>
+          </blockquote>
+          <blockquote class="testimonial">
+            <i class="fa-solid fa-quote-left fa-2x"></i>
+            <p>
+              “ExploreWorld made our honeymoon unforgettable! Everything was
+              perfectly arranged.”
+            </p>
+            <h4>- Vikas Thakur</h4>
+          </blockquote>
+          <blockquote class="testimonial">
+            <i class="fa-solid fa-quote-left fa-2x"></i>
+            <p>
+              “ExploreWorld made our honeymoon unforgettable! Everything was
+              perfectly arranged.”
+            </p>
+            <h4>- Vikas Thakur</h4>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+    <!-- testimonials sections ends here -->
+    <!-- form booking section starts -->
+    <section id="booking" role="form" aria-label="booking section">
+      <div class="container">
+        <h2 id="bookng-heading">Book Your Travel</h2>
+        <p id="booking-desc">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur,
+          et!
+        </p>
+
+        <form aria-label="booking-form" method="post">
+          <label for="fullname">Full Name</label>
+          <input
+            type="text"
+            name="fname"
+            id="fullname"
+            required
+            placeholder="enter your full name"
+          />
+          <label for="fullname">Full Name</label>
+          <input
+            type="text"
+            name="fname"
+            id="fullname"
+            required
+            placeholder="enter your full name"
+          />
+          <label for="fullname">Full Name</label>
+          <input
+            type="text"
+            name="fname"
+            id="fullname"
+            required
+            placeholder="enter your full name"
+          />
+
+          <label for="destination">Destinations</label>
+          <select name="destination id="destination">
+            <option value="">Paris</option>
+            <option value="">Bali</option>
+            <option value="">New York</option>
+          </select>
+
+          <label for="message or feedback">Message or Feedback</label>
+          <textarea
+            name="feedback"
+            id="message"
+            placeholder="enter your special requirement"
+          ></textarea>
+          <button type="submit">Book Now</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- home work -->
+     <!-- 1. make a good looking footer with same theme -->
+      <footer>
+        <div>
+            <h2>Find US</h2>
+           <iframe title="ExploreWorld Office Location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019835235083!2d-122.41941538468187!3d37.77492977975932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064d9d7b8a3%3A0x47fca1f7b3b9b0e!2sTravel%20Agency!5e0!3m2!1sen!2sin!4v1680000000000" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </footer>
+  </body>
+</html>
