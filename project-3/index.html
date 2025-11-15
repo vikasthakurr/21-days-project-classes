@@ -73,6 +73,11 @@
         border-radius: 50%;
         object-fit: cover;
       }
+
+      .kpi-card{
+        border-radius: 13px;
+        box-shadow: 0 7px 19px rgba(15,23,35,0);
+      }
     </style>
   </head>
   <body>
@@ -163,6 +168,46 @@
           </div>
           </div>
         </header>
+
+
+        <!-- main dashboard content -->
+         <main class="flex-grow-1 p-4" style="min-height:100vh">
+
+          <!-- kpi card -->
+   <div class="row g-4">
+            <div class="col-md-3">
+              <div class="card p-3 kpi-card">
+                <h6>Total Resources</h6>
+                <h3 class="fw-bold mb-0">128</h3>
+                <small class="text-success"
+                  ><i class="fa-solid fa-arrow-up"></i> 6% this month</small
+                >
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card p-3 kpi-card">
+                <h6>Projects Active</h6>
+                <h3 class="fw-bold mb-0">24</h3>
+                <small class="text-primary">4 new started</small>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card p-3 kpi-card">
+                <h6>Average Utilization</h6>
+                <h3 class="fw-bold mb-0">82%</h3>
+                <small class="text-warning">Stable trend</small>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card p-3 kpi-card">
+                <h6>Available Resources</h6>
+                <h3 class="fw-bold mb-0">14</h3>
+                <small class="text-danger">Needs allocation</small>
+              </div>
+            </div>
+          </div>
+
+         </main>
       </div>
     </div>
   </body>
