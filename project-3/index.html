@@ -578,6 +578,34 @@
           },
         },
       });
+
+       const pieCtx = document.getElementById("reportPie");
+      new Chart(pieCtx, {
+        type: "doughnut",
+        data: {
+          labels: ["Frontend", "Backend", "Data Science", "QA", "DevOps"],
+          datasets: [
+            {
+              data: [25, 30, 20, 15, 10],
+              backgroundColor: [
+                "rgba(13,110,253,0.8)",
+                "rgba(25,135,84,0.8)",
+                "rgba(255,193,7,0.8)",
+                "rgba(220,53,69,0.8)",
+                "rgba(102,16,242,0.8)",
+              ],
+            },
+          ],
+        },
+        options: {
+          plugins: { legend: { position: "bottom" } },
+        },
+      });
+
+
+
+
     </script>
+    <script src="logic.js"></script>
   </body>
 </html>
