@@ -95,7 +95,7 @@
   </head>
   <body>
     <div class="layout-wrapper"> </div>
-      <!-- sidebar -->
+      <!-- Sidebar -->
       <aside class="sidebar p-3 d-flex flex-column flex-shrink-0">
         <div class="d-flex align-items-center mb-4 ps-2">
           <i class="fa-solid fa-robot fa-2x me-2 text-primary"></i>
@@ -129,7 +129,8 @@
 
       <!-- main content -->
       <div class="main-content">
-        <header
+        
+         <header
           class="topbar d-flex align-items-center justify-content-between"
         >
           <div class="d-flex align-items-center gap-3">
@@ -181,10 +182,11 @@
             </div>
           </div>
         </header>
-        <!-- kpi row -->
-           <!-- KPI Row -->
-          <main class="flex-grow-1 p-4" style="min-height: 100vh">
-            <div class="row g-4">
+      
+                <!-- Main Dashboard Content -->
+        <main class="flex-grow-1 p-4" style="min-height: 100vh">
+          <!-- KPI Row -->
+          <div class="row g-4">
             <div class="col-md-3">
               <div class="card p-3 kpi-card">
                 <h6>Total Resources</h6>
@@ -216,7 +218,8 @@
               </div>
             </div>
           </div>
-            <!-- Chart + Table -->
+
+          <!-- Chart + Table -->
           <div class="row g-4 my-4">
             <div class="col-lg-7">
               <div class="card p-3 h-100">
@@ -276,8 +279,222 @@
               </div>
             </div>
           </div>
-          </main>
+
+          <!-- ongoing Project section -->
+
+          <section id="projects" class="mb-5">
+            <div class="card p-4">
+               <div
+                class="d-flex justify-content-between align-items-center mb-3"
+              >
+                <h5 class="mb-0">Ongoing Projects</h5>
+                <button
+                  class="btn btn-sm btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#addProjectModal"
+                >
+                  <i class="fa-solid fa-plus me-1"></i> Add New
+                </button>
+              </div>
+
+              <div class="row g-4">
+                <!-- project 1-->
+                <div class="col-md-6 col-lg-4">
+                  <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body">
+                      <h6 class="fw-bold">Payments Revamp</h6>
+                      <p class="text-muted mb-2">
+                        Team: <strong>Backend</strong>
+                      </p>
+                      <div class="progress mb-2" style="height: 10px">
+                        <div
+                          class="progress-bar bg-primary"
+                          style="width: 80%"
+                        ></div>
+                      </div>
+                      <small class="text-muted">80% complete</small>
+                    </div>
+                    <div
+                      class="card-footer bg-white border-0 d-flex justify-content-between"
+                    >
+                      <span
+                        ><i class="fa-regular fa-calendar"></i> Due: Dec
+                        2025</span
+                      >
+                      <a href="#" class="btn btn-sm btn-outline-primary"
+                        >View</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- project-2 -->
+                  <div class="col-md-6 col-lg-4">
+                  <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body">
+                      <h6 class="fw-bold">Payments Revamp</h6>
+                      <p class="text-muted mb-2">
+                        Team: <strong>Backend</strong>
+                      </p>
+                      <div class="progress mb-2" style="height: 10px">
+                        <div
+                          class="progress-bar bg-primary"
+                          style="width: 80%"
+                        ></div>
+                      </div>
+                      <small class="text-muted">80% complete</small>
+                    </div>
+                    <div
+                      class="card-footer bg-white border-0 d-flex justify-content-between"
+                    >
+                      <span
+                        ><i class="fa-regular fa-calendar"></i> Due: Dec
+                        2025</span
+                      >
+                      <a href="#" class="btn btn-sm btn-outline-primary"
+                        >View</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- project-3 -->
+                  <div class="col-md-6 col-lg-4">
+                  <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body">
+                      <h6 class="fw-bold">Payments Revamp</h6>
+                      <p class="text-muted mb-2">
+                        Team: <strong>Backend</strong>
+                      </p>
+                      <div class="progress mb-2" style="height: 10px">
+                        <div
+                          class="progress-bar bg-primary"
+                          style="width: 80%"
+                        ></div>
+                      </div>
+                      <small class="text-muted">80% complete</small>
+                    </div>
+                    <div
+                      class="card-footer bg-white border-0 d-flex justify-content-between"
+                    >
+                      <span
+                        ><i class="fa-regular fa-calendar"></i> Due: Dec
+                        2025</span
+                      >
+                      <a href="#" class="btn btn-sm btn-outline-primary"
+                        >View</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- add project modal -->
+          o<div
+            class="modal fade"
+            id="addProjectModal"
+            tabindex="-1"
+            aria-labelledby="addProjectModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title fw-bold" id="addProjectModalLabel">
+                    Add New Project
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+
+                <div class="modal-body">
+                  <form id="addProjectForm">
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label class="form-label">Project Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="projectName"
+                          placeholder="Enter project name"
+                          required
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Team</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="projectTeam"
+                          placeholder="Team name (e.g., Backend)"
+                          required
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Progress (%)</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="projectProgress"
+                          placeholder="e.g. 65"
+                          min="0"
+                          max="100"
+                          required
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Due Date</label>
+                        <input
+                          type="month"
+                          class="form-control"
+                          id="projectDue"
+                          required
+                        />
+                      </div>
+                      <div class="col-12">
+                        <label class="form-label">Description</label>
+                        <textarea
+                          class="form-control"
+                          id="projectDescription"
+                          rows="3"
+                          placeholder="Brief description..."
+                        ></textarea>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="saveProjectBtn"
+                  >
+                    <i class="fa-solid fa-save me-1"></i> Save Project
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
       </div>
     </div>
+
+      <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
