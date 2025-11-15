@@ -17,7 +17,7 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
-   <style>
+    <style>
       :root {
         --sidebar-width: 220px;
         --sidebar-bg: #ffffff;
@@ -94,7 +94,7 @@
     </style>
   </head>
   <body>
-    <div class="layout-wrapper"> </div>
+    <div class="layout-wrapper">
       <!-- Sidebar -->
       <aside class="sidebar p-3 d-flex flex-column flex-shrink-0">
         <div class="d-flex align-items-center mb-4 ps-2">
@@ -127,10 +127,10 @@
         </nav>
       </aside>
 
-      <!-- main content -->
+      <!-- Main Content -->
       <div class="main-content">
-        
-         <header
+        <!-- Topbar -->
+        <header
           class="topbar d-flex align-items-center justify-content-between"
         >
           <div class="d-flex align-items-center gap-3">
@@ -182,8 +182,8 @@
             </div>
           </div>
         </header>
-      
-                <!-- Main Dashboard Content -->
+
+        <!-- Main Dashboard Content -->
         <main class="flex-grow-1 p-4" style="min-height: 100vh">
           <!-- KPI Row -->
           <div class="row g-4">
@@ -280,11 +280,10 @@
             </div>
           </div>
 
-          <!-- ongoing Project section -->
-
+          <!-- Ongoing Projects -->
           <section id="projects" class="mb-5">
             <div class="card p-4">
-               <div
+              <div
                 class="d-flex justify-content-between align-items-center mb-3"
               >
                 <h5 class="mb-0">Ongoing Projects</h5>
@@ -298,7 +297,7 @@
               </div>
 
               <div class="row g-4">
-                <!-- project 1-->
+                <!-- Project 1 -->
                 <div class="col-md-6 col-lg-4">
                   <div class="card border-0 shadow-sm h-100">
                     <div class="card-body">
@@ -328,28 +327,28 @@
                   </div>
                 </div>
 
-                <!-- project-2 -->
-                  <div class="col-md-6 col-lg-4">
+                <!-- Project 2 -->
+                <div class="col-md-6 col-lg-4">
                   <div class="card border-0 shadow-sm h-100">
                     <div class="card-body">
-                      <h6 class="fw-bold">Payments Revamp</h6>
+                      <h6 class="fw-bold">AI Insights Dashboard</h6>
                       <p class="text-muted mb-2">
-                        Team: <strong>Backend</strong>
+                        Team: <strong>Data Science</strong>
                       </p>
                       <div class="progress mb-2" style="height: 10px">
                         <div
-                          class="progress-bar bg-primary"
-                          style="width: 80%"
+                          class="progress-bar bg-success"
+                          style="width: 65%"
                         ></div>
                       </div>
-                      <small class="text-muted">80% complete</small>
+                      <small class="text-muted">65% complete</small>
                     </div>
                     <div
                       class="card-footer bg-white border-0 d-flex justify-content-between"
                     >
                       <span
-                        ><i class="fa-regular fa-calendar"></i> Due: Dec
-                        2025</span
+                        ><i class="fa-regular fa-calendar"></i> Due: Jan
+                        2026</span
                       >
                       <a href="#" class="btn btn-sm btn-outline-primary"
                         >View</a
@@ -358,28 +357,28 @@
                   </div>
                 </div>
 
-                <!-- project-3 -->
-                  <div class="col-md-6 col-lg-4">
+                <!-- Project 3 -->
+                <div class="col-md-6 col-lg-4">
                   <div class="card border-0 shadow-sm h-100">
                     <div class="card-body">
-                      <h6 class="fw-bold">Payments Revamp</h6>
+                      <h6 class="fw-bold">Infrastructure Upgrade</h6>
                       <p class="text-muted mb-2">
-                        Team: <strong>Backend</strong>
+                        Team: <strong>DevOps</strong>
                       </p>
                       <div class="progress mb-2" style="height: 10px">
                         <div
-                          class="progress-bar bg-primary"
-                          style="width: 80%"
+                          class="progress-bar bg-warning"
+                          style="width: 50%"
                         ></div>
                       </div>
-                      <small class="text-muted">80% complete</small>
+                      <small class="text-muted">50% complete</small>
                     </div>
                     <div
                       class="card-footer bg-white border-0 d-flex justify-content-between"
                     >
                       <span
-                        ><i class="fa-regular fa-calendar"></i> Due: Dec
-                        2025</span
+                        ><i class="fa-regular fa-calendar"></i> Due: Feb
+                        2026</span
                       >
                       <a href="#" class="btn btn-sm btn-outline-primary"
                         >View</a
@@ -388,11 +387,10 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </section>
 
-          <!-- add project modal -->
+          <!-- Add Project Modal -->
           <div
             class="modal fade"
             id="addProjectModal"
@@ -491,20 +489,18 @@
             </div>
           </div>
 
-
-          <!-- report and analysis -->
-
+          <!-- Reports -->
           <section id="reports" class="my-5">
             <div class="card p-4">
-              <h5 class="mb-4">Reports and analytics</h5>
+              <h5 class="mb-3">Reports & Analytics</h5>
               <div class="row g-4">
-                <div class="cold-md-7">
+                <div class="col-md-7">
                   <div class="card p-3 h-100">
                     <h6>Project Performance Overview</h6>
                     <canvas id="reportBar"></canvas>
                   </div>
                 </div>
-                <div class="cold-md-5">Resource Distribution
+                <div class="col-md-5">
                   <div class="card p-3 h-100">
                     <h6>Resource Distribution</h6>
                     <canvas id="reportPie"></canvas>
@@ -517,46 +513,46 @@
       </div>
     </div>
 
-      <!-- Bootstrap Bundle -->
+    <!-- Bootstrap Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
       //sidebar toggle -> for mobile
 
-      document.getElementById("toggleSidebar").addEventListener("click",function(){
-        document.querySelector(".sidebar").classList.toggle("show")
-      })
+      document
+        .getElementById("toggleSidebar")
+        .addEventListener("click", function () {
+          document.querySelector(".sidebar").classList.toggle("show");
+        });
 
-      //chart 
+      //chart
 
-      const ctx= document.getElementById("utilChart");
+      const ctx = document.getElementById("utilChart");
 
-      new Chart(ctx,{
-        type:"line",
-        data:{
-          labels:["May","June","July","Aug","Sept","Oct"],
-          datasets:[
+      new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: ["May", "June", "July", "Aug", "Sept", "Oct"],
+          datasets: [
             {
-              label:"Overall Utilization",
-              data:[34,56,77,96,788,998],
-              tension:0.3,
-              fill:true,
-              backgroundColor:"rgba(13,110,253,0.07)",
-              borderColor:"rgba(13,110,253,0.8)",
-              pointRadius:4
-              
+              label: "Overall Utilization",
+              data: [34, 56, 77, 96, 788, 998],
+              tension: 0.3,
+              fill: true,
+              backgroundColor: "rgba(13,110,253,0.07)",
+              borderColor: "rgba(13,110,253,0.8)",
+              pointRadius: 4,
             },
           ],
         },
-         options: {
+        options: {
           responsive: true,
           plugins: { legend: { position: "top" } },
           scales: { y: { beginAtZero: false, min: 40, max: 100 } },
         },
-      })
+      });
 
-
-         // Reports Charts
+      // Reports Charts
       const barCtx = document.getElementById("reportBar");
       new Chart(barCtx, {
         type: "bar",
@@ -579,7 +575,7 @@
         },
       });
 
-       const pieCtx = document.getElementById("reportPie");
+      const pieCtx = document.getElementById("reportPie");
       new Chart(pieCtx, {
         type: "doughnut",
         data: {
@@ -601,10 +597,6 @@
           plugins: { legend: { position: "bottom" } },
         },
       });
-
-
-
-
     </script>
     <script src="logic.js"></script>
   </body>
