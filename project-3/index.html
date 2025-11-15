@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width='device-width', initial-scale=1.0" />
+    <title>Document</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <style>
+      :root {
+        --sidebar-width: 250px;
+        --sidebar-bg: #ffffff;
+        --sidebar-border-color: #e5e7eb;
+        --primary-blue: #0d6efd;
+      }
+      body {
+        background: #f8f9fa;
+      }
+      .layout-wrapper {
+        display: flex;
+      }
+      .sidebar {
+        width: var(--sidebar-width);
+        min-height: 100vh;
+        background: var(--sidebar-bg);
+        border-right: 1px solid var(--sidebar-border-color);
+      }
+      .sidebar .nav-link {
+        color: #344767;
+        font-weight: bold;
+        padding: 1rem 1.2rem;
+        border-radius: 0.4rem;
+      }
+      .sidebar .nav-link i {
+        color: var(--primary-blue);
+      }
+      .sidebar .nav-link.active {
+        background: rgba(13, 110, 253, 0.1);
+        color: var(--primary-blue);
+      }
+      .sidebar .nav-link:hover {
+        background: rgba(13, 110, 253, 0.1);
+      }
+      .main-content{
+        flex-grow: 1;
+        padding-left: var(--sidebar-width);
+        padding-right: 1.6rem;
+
+      }
+      .topbar{
+        background: #fff;
+        border-bottom: 1px solid var(--sidebar-border-color);
+        padding: 1rem 1.5rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+
+      }
+      .avatar-sm{
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout-wrapper">
+      <!-- sidebar -->
+      <aside class="sidebar p-3 d-flex flex-column flex-shrink-0">
+        <div class="d-flex align-items-center mb-4 ps-2">
+          <i class="fa-solid fa-robot fa-2x me-2 text-primary"></i>
+          <div>
+            <h6 class="mb-0 fw-bold">Resource Manager</h6>
+            <small class="text-muted">Management Suite</small>
+          </div>
+        </div>
+
+        <nav class="nav flex-column mb-auto">
+          <a class="nav-link active" href="#"
+            ><i class="fa-solid fa-gauge-high me-3"></i>Dashboard</a
+          >
+          <a class="nav-link" href="#allocations"
+            ><i class="fa-solid fa-diagram-project me-3"></i>Allocations</a
+          >
+          <a class="nav-link" href="#teams"
+            ><i class="fa-solid fa-users me-3"></i>Teams</a
+          >
+          <a class="nav-link" href="#projects"
+            ><i class="fa-solid fa-briefcase me-3"></i>Projects</a
+          >
+          <a class="nav-link" href="#reports"
+            ><i class="fa-solid fa-file-lines me-3"></i>Reports</a
+          >
+          <a class="nav-link" href="#contact"
+            ><i class="fa-solid fa-envelope me-3"></i>Contact</a
+          >
+        </nav>
+      </aside>
+
+      <!-- main content -->
+      <div class="main-content">
+        <header
+          class="topbar d-flex align-items-center justify-content-between"
+        >
+          <div class="d-flex align-items-center gap-4">
+            <button class="btn btn-light d-lg-none" id="toggleSidebar">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <h4 class="mb-0 d-none d-md-block">Project-3</h4>
+          </div>
+            <div class="d-flex align-items-center gap-3">
+            <div class="input-group" style="min-width: 300px">
+              <span class="input-group-text"
+                ><i class="fa-solid fa-magnifying-glass"></i
+              ></span>
+              <input
+                class="form-control"
+                placeholder="Search project, team or resource..."
+              />
+            </div>
+            <button class="btn btn-outline-secondary position-relative">
+              <i class="fa-regular fa-bell"></i>
+              <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              >
+                3
+              </span>
+            </button>
+            <div class="dropdown">
+              <a
+                href="#"
+                class="d-flex align-items-center text-decoration-none"
+                data-bs-toggle="dropdown"
+              >
+                <img
+                  src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg"
+                  class="avatar-sm me-2"
+                />
+                <div class="d-none d-sm-block">
+                  <div class="fw-bold">Vikas</div>
+                  <small class="text-muted">Lead Engineer</small>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+              </ul>
+            </div>
+          </div>
+          </div>
+        </header>
+      </div>
+    </div>
+  </body>
+</html>
