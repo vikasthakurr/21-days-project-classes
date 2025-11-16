@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project-4</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="antialiased text-slate-800 bg-slate-50">
+    <!-- Navbar -->
+    <header
+      class="sticky top-0 z-50 bg-[#f9fafb] border-b border-slate-200 shadow-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- logo -->
+          <div class="flex items-center gap-6">
+            <a href="#home" class="flex items-center gap-2 group">
+              <div
+                class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white font-bold shadow-sm group-hover:scale-105 transition-transform"
+              >
+                GfG
+              </div>
+              <div class="hidden sm:block">
+                <div class="text-lg font-semibold text-slate-800">
+                  GeeksforGeeks<span class="text-green-500">Jobs</span>
+                </div>
+                <div class="text-xs text-slate-500 -mt-0.5">
+                  Jobs . Hiring . Careers
+                </div>
+              </div>
+            </a>
+
+            <!-- NavLinks -->
+            <nav
+              class="hidden lg:flex items-center gap-4 text-sm font-medium text-slate-600"
+            >
+              <a
+                href="#home"
+                class="py-2 px-3 rounded hover:text-indigo-600 hover:bg-indigo-50"
+                >Home</a
+              >
+              <a
+                href="#availble"
+                class="py-2 px-3 rounded hover:text-indigo-600 hover:bg-indigo-50"
+                >Availble Jobs</a
+              >
+              <a
+                href="#home"
+                class="py-2 px-3 rounded hover:text-indigo-600 hover:bg-indigo-50"
+                >Job Listing</a
+              >
+              <a
+                href="#home"
+                class="py-2 px-3 rounded hover:text-indigo-600 hover:bg-indigo-50"
+                >Popular Jobs</a
+              >
+            </nav>
+          </div>
+
+          <!-- button section -->
+          <div class="flex items-center gap-3">
+            <!-- Post Job -->
+            <button
+              id="openPostJob"
+              class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-md border border-indigo-600 text-indigo-600 text-sm font-medium hover:bg-indigo-50 transition"
+            >
+              <svg
+                class="w-4 h-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  d="M12 5v14M5 12h14"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Post Job
+            </button>
+
+            <!-- Recruiter Login -->
+            <button
+              id="loginRecruiterBtn"
+              class="hidden lg:inline px-4 py-2 text-sm font-medium rounded-md border border-slate-300 text-slate-700 hover:bg-slate-100 transition"
+            >
+              Recruiter Login
+            </button>
+
+            <!-- Job Seeker Login -->
+            <button
+              id="loginSeekerBtn"
+              class="px-4 py-2 text-sm font-medium rounded-md bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm transition"
+            >
+              Job Seeker
+            </button>
+
+            <!-- MOBILE MENU BUTTON -->
+            <button
+              id="mobileBtn"
+              class="ml-2 inline-flex items-center justify-center p-2 rounded-md text-slate-600 hover:bg-slate-200 lg:hidden"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+  </body>
+</html>
