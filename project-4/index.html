@@ -1463,5 +1463,74 @@
         </div>
       </div>
     </section>
+
+    <!-- apply modal -->
+    <div
+      id="applyModal"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm"
+    >
+      <div
+        class="bg-white rounded-2xl shadow-2xl p-6 w-full max-w-md transform"
+        id="applyContent"
+      >
+        <div class="flex items-start justify-between mb-4">
+          <h3 class="text-xl font-semibold text-slate-800">
+            Apply for this Job
+          </h3>
+          <button
+            id="closeApply"
+            class="text-slate-500 hover:text-slate-700 text-2xl leading-none"
+          >
+            &times;
+          </button>
+        </div>
+
+        <form class="space-y-4">
+          <div>
+            <label class="text-sm text-slate-600">Full Name</label>
+            <input
+              type="text"
+              placeholder="Your full name"
+              class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-indigo-200"
+              required
+            />
+          </div>
+          <div>
+            <label class="text-sm text-slate-600">Email Address</label>
+            <input
+              type="email"
+              placeholder="your@email.com"
+              class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-indigo-200"
+              required
+            />
+          </div>
+          <div>
+            <label class="text-sm text-slate-600"
+              >Resume (Link or Upload)</label
+            >
+            <input
+              type="text"
+              placeholder="LinkedIn / Google Drive URL"
+              class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-indigo-200"
+            />
+          </div>
+          <div class="flex justify-end gap-2 pt-2">
+            <button
+              type="button"
+              id="cancelApply"
+              class="px-4 py-2 border border-slate-300 rounded-md text-slate-600 hover:bg-slate-100"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="px-4 py-2 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 shadow-sm"
+            >
+              Submit Application
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
