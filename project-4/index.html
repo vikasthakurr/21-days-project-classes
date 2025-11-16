@@ -1480,6 +1480,403 @@
       </div>
     </div>
 
+    <!-- RECRUITER LOGIN MODAL (UI only) -->
+    <div
+      id="recruiterModal"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm"
+    >
+      <div
+        class="bg-white rounded-2xl shadow-2xl p-6 w-full max-w-md transform"
+      >
+        <div class="flex items-start justify-between mb-4">
+          <h3 class="text-xl font-semibold text-slate-800">Recruiter Login</h3>
+          <button
+            class="closeRecruiter text-slate-500 hover:text-slate-700 text-2xl leading-none"
+          >
+            &times;
+          </button>
+        </div>
+        <form class="space-y-4">
+          <div>
+            <label class="text-sm text-slate-600">Company Email</label>
+            <input
+              type="email"
+              placeholder="company@example.com"
+              class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-indigo-200"
+              required
+            />
+          </div>
+          <div>
+            <label class="text-sm text-slate-600">Password</label>
+            <input
+              type="password"
+              placeholder="••••••••"
+              class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-indigo-200"
+              required
+            />
+          </div>
+          <div class="flex items-center justify-between text-sm">
+            <label class="flex items-center gap-2">
+              <input type="checkbox" class="w-4 h-4 border-slate-300 rounded" />
+              Remember me
+            </label>
+            <a href="#" class="text-indigo-600 hover:text-indigo-700"
+              >Forgot password?</a
+            >
+          </div>
+          <div class="flex justify-end gap-2 pt-2">
+            <button
+              type="button"
+              class="closeRecruiter px-4 py-2 border border-slate-300 rounded-md text-slate-600 hover:bg-slate-100"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="px-4 py-2 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 shadow-sm"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- JOB SEEKER LOGIN MODAL (UI only) -->
+    <div
+      id="seekerModal"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm"
+    >
+      <div
+        class="bg-white rounded-2xl shadow-2xl p-6 w-full max-w-md transform"
+      >
+        <div class="flex items-start justify-between mb-4">
+          <h3 class="text-xl font-semibold text-slate-800">Job Seeker Login</h3>
+          <button
+            class="closeSeeker text-slate-500 hover:text-slate-700 text-2xl leading-none"
+          >
+            &times;
+          </button>
+        </div>
+        <form class="space-y-4">
+          <div>
+            <label class="text-sm text-slate-600">Email</label>
+            <input
+              type="email"
+              placeholder="you@example.com"
+              class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-indigo-200"
+              required
+            />
+          </div>
+          <div>
+            <label class="text-sm text-slate-600">Password</label>
+            <input
+              type="password"
+              placeholder="••••••••"
+              class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-indigo-200"
+              required
+            />
+          </div>
+          <div class="flex justify-between items-center text-sm">
+            <label class="flex items-center gap-2">
+              <input type="checkbox" class="w-4 h-4 border-slate-300 rounded" />
+              Keep me signed in
+            </label>
+            <a href="#" class="text-indigo-600 hover:text-indigo-700"
+              >Forgot password?</a
+            >
+          </div>
+          <div class="flex justify-end gap-2 pt-2">
+            <button
+              type="button"
+              class="closeSeeker px-4 py-2 border border-slate-300 rounded-md text-slate-600 hover:bg-slate-100"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="px-4 py-2 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 shadow-sm"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- POST JOB MODAL (UI only) -->
+    <div
+      id="postJobModal"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm"
+    >
+      <div
+        id="postJobContent"
+        class="bg-white rounded-2xl shadow-2xl p-6 w-full max-w-2xl transform"
+      >
+        <div class="flex items-start justify-between mb-4">
+          <h3
+            class="text-xl font-semibold text-slate-800 flex items-center gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5 text-indigo-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+            Post a Job
+          </h3>
+          <button
+            id="closePostJob"
+            class="text-slate-500 hover:text-slate-700 text-2xl leading-none"
+          >
+            &times;
+          </button>
+        </div>
+
+        <!-- FORM (UI only) -->
+        <form id="postJobForm" class="grid grid-cols-1 gap-4">
+          <div>
+            <label class="text-sm text-slate-600 font-medium">Job Title</label>
+            <input
+              id="pjTitle"
+              type="text"
+              placeholder="e.g. Frontend Developer"
+              class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-indigo-200"
+              required
+            />
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-sm text-slate-600 font-medium">Company</label>
+              <input
+                id="pjCompany"
+                type="text"
+                placeholder="Company Name"
+                class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-indigo-200"
+                required
+              />
+            </div>
+            <div>
+              <label class="text-sm text-slate-600 font-medium">Location</label>
+              <input
+                id="pjLocation"
+                type="text"
+                placeholder="City, Remote, Hybrid..."
+                class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-indigo-200"
+              />
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-sm text-slate-600 font-medium"
+                >Experience</label
+              >
+              <input
+                id="pjExp"
+                type="text"
+                placeholder="e.g. 2 - 4 yrs"
+                class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-indigo-200"
+              />
+            </div>
+            <div>
+              <label class="text-sm text-slate-600 font-medium">Salary</label>
+              <input
+                id="pjSalary"
+                type="text"
+                placeholder="e.g. 6 - 10 LPA"
+                class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-indigo-200"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="text-sm text-slate-600 font-medium"
+              >Description</label
+            >
+            <textarea
+              id="pjDesc"
+              rows="4"
+              placeholder="Describe key responsibilities and required skills..."
+              class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-indigo-200"
+            ></textarea>
+          </div>
+
+          <div class="flex justify-end gap-2 pt-2">
+            <button
+              type="button"
+              id="cancelPostJob"
+              class="px-4 py-2 border border-slate-300 rounded-md text-slate-600 hover:bg-slate-100 transition"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="px-4 py-2 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 shadow-sm transition"
+            >
+              Post Job
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#f9fafb] border-t border-slate-200 mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <!-- About -->
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <div
+                class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white font-bold shadow-sm"
+              >
+                GfG
+              </div>
+              <h3 class="text-lg font-semibold text-slate-800">
+                GeeksforGeeks Jobs
+              </h3>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              GeeksforGeeks Job Portal helps millions of developers and
+              engineers connect with top employers. Start your next big career
+              move here!
+            </p>
+            <div class="flex items-center gap-3 mt-4">
+              <a
+                href="#"
+                class="text-slate-500 hover:text-indigo-600 transition"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M22.23 5.924a8.973 8.973 0 01-2.568.702 4.481 4.481 0 001.965-2.475 8.982 8.982 0 01-2.84 1.085 4.482 4.482 0 00-7.64 4.085A12.73 12.73 0 013.15 4.58a4.48 4.48 0 001.387 5.976 4.46 4.46 0 01-2.031-.561v.056a4.482 4.482 0 003.593 4.393 4.493 4.493 0 01-2.025.077 4.484 4.484 0 004.188 3.115A8.994 8.994 0 012 19.54a12.703 12.703 0 006.88 2.016c8.262 0 12.78-6.847 12.78-12.78 0-.195-.004-.39-.013-.584A9.13 9.13 0 0022.23 5.924z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="text-slate-500 hover:text-indigo-600 transition"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M22 12.072c0-5.523-4.477-10-10-10S2 6.549 2 12.072c0 5.02 3.676 9.182 8.437 9.878v-6.987h-2.54V12.07h2.54V9.797c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.77-1.63 1.562v1.945h2.773l-.443 2.893h-2.33v6.987C18.324 21.254 22 17.092 22 12.072z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="text-slate-500 hover:text-indigo-600 transition"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 1.206.056 2.003.246 2.467.415a4.921 4.921 0 011.757 1.144 4.921 4.921 0 011.144 1.757c.169.464.359 1.261.415 2.467.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.056 1.206-.246 2.003-.415 2.467a4.921 4.921 0 01-1.144 1.757 4.921 4.921 0 01-1.757 1.144c-.464.169-1.261.359-2.467.415-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.206-.056-2.003-.246-2.467-.415a4.921 4.921 0 01-1.757-1.144 4.921 4.921 0 01-1.144-1.757c-.169-.464-.359-1.261-.415-2.467C2.175 15.757 2.163 15.377 2.163 12s.012-3.584.07-4.85c.056-1.206.246-2.003.415-2.467a4.921 4.921 0 011.144-1.757A4.921 4.921 0 015.55 1.42c.464-.169 1.261-.359 2.467-.415C8.283 1.012 8.663 1 11.867 1h.266zM12 0C8.74 0 8.333.013 7.052.072 5.775.13 4.903.332 4.18.628a6.922 6.922 0 00-2.512 1.638A6.922 6.922 0 00.03 4.78C-.266 5.503-.468 6.375-.526 7.652-.585 8.933-.597 9.34-.597 12.6c0 3.26.012 3.667.071 4.948.058 1.277.26 2.149.557 2.872a6.922 6.922 0 001.638 2.512 6.922 6.922 0 002.512 1.638c.723.297 1.595.499 2.872.557C8.333 23.987 8.74 24 12 24s3.667-.013 4.948-.072c1.277-.058 2.149-.26 2.872-.557a6.922 6.922 0 002.512-1.638 6.922 6.922 0 001.638-2.512c.297-.723.499-1.595.557-2.872.059-1.281.072-1.688.072-4.948 0-3.26-.013-3.667-.072-4.948-.058-1.277-.26-2.149-.557-2.872A6.922 6.922 0 0021.82 2.266 6.922 6.922 0 0019.308.628C18.585.331 17.713.13 16.436.072 15.155.013 14.748 0 12 0z"
+                  />
+                  <path
+                    d="M12 5.838A6.162 6.162 0 005.838 12 6.162 6.162 0 0012 18.162 6.162 6.162 0 0018.162 12 6.162 6.162 0 0012 5.838zm0 10.162A4 4 0 118 12a4 4 0 014 4zm6.406-10.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h4 class="text-lg font-semibold text-slate-900 mb-3">
+              Quick Links
+            </h4>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li>
+                <a href="#home" class="hover:text-indigo-600 transition"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a href="#available" class="hover:text-indigo-600 transition"
+                  >Available Jobs</a
+                >
+              </li>
+              <li>
+                <a href="#listing" class="hover:text-indigo-600 transition"
+                  >Job Listing</a
+                >
+              </li>
+              <li>
+                <a href="#popular" class="hover:text-indigo-600 transition"
+                  >Popular Jobs</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Resources -->
+          <div>
+            <h4 class="text-lg font-semibold text-slate-900 mb-3">Resources</h4>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li>
+                <a href="#" class="hover:text-indigo-600 transition"
+                  >Career Tips</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-indigo-600 transition"
+                  >Resume Builder</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-indigo-600 transition"
+                  >Interview Guide</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-indigo-600 transition"
+                  >Employer FAQs</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div>
+            <h4 class="text-lg font-semibold text-slate-900 mb-3">
+              Contact Us
+            </h4>
+            <p class="text-sm text-slate-600 mb-2">
+              Email:
+              <a
+                href="mailto:jobs@geeksforgeeks.org"
+                class="text-indigo-600 hover:underline"
+                >jobs@geeksforgeeks.org</a
+              >
+            </p>
+            <p class="text-sm text-slate-600 mb-2">Phone: +91 1234567890</p>
+            <p class="text-sm text-slate-600">
+              Address: Noida, Uttar Pradesh, India
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="mt-12 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-500"
+        >
+          <p>© 2025 GeeksforGeeks Job Portal. All rights reserved.</p>
+          <div class="flex items-center gap-4 mt-3 sm:mt-0">
+            <a href="#" class="hover:text-indigo-600">Privacy Policy</a>
+            <a href="#" class="hover:text-indigo-600">Terms</a>
+            <a href="#" class="hover:text-indigo-600">Support</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
     <script>
       function toggleModal(openBtnId, modalId, closeSelectors) {
         const modal = document.getElementById(modalId);
