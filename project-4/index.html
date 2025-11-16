@@ -1496,18 +1496,17 @@
         close.forEach((btn) => {
           btn.addEventListener("click", () => modal.classList.add("hidden"));
         });
-
-        //apply now
-
-        document.querySelectorAll(".applyBtn").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const modal = document.getElementById("applyModal");
-            modal.classList.remove("hidden");
-            modal.classList.add("flex");
-          });
-        });
-        toggleModal("closeApply", "applyModal", "#closeApply", "#cancelApply");
       }
+      //apply now
+
+      document.querySelectorAll(".applyBtn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const modal = document.getElementById("applyModal");
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+        });
+      });
+      toggleModal("closeApply", "applyModal", "#closeApply", "#cancelApply");
     </script>
   </body>
 </html>
