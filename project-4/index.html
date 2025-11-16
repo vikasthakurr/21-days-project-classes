@@ -13,7 +13,7 @@
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-          <!-- logo -->
+          <!-- LOGO -->
           <div class="flex items-center gap-6">
             <a href="#home" class="flex items-center gap-2 group">
               <div
@@ -23,42 +23,42 @@
               </div>
               <div class="hidden sm:block">
                 <div class="text-lg font-semibold text-slate-800">
-                  GeeksforGeeks<span class="text-green-500">Jobs</span>
+                  GeeksforGeeks<span class="text-green-500"> Jobs</span>
                 </div>
                 <div class="text-xs text-slate-500 -mt-0.5">
-                  Jobs . Hiring . Careers
+                  Jobs • Hiring • Careers
                 </div>
               </div>
             </a>
 
-            <!-- NavLinks -->
+            <!-- NAV LINKS -->
             <nav
               class="hidden lg:flex items-center gap-4 text-sm font-medium text-slate-600"
             >
               <a
                 href="#home"
-                class="py-2 px-3 rounded hover:text-indigo-600 hover:bg-indigo-50"
+                class="py-2 px-3 rounded hover:text-indigo-600 hover:bg-indigo-50 transition"
                 >Home</a
               >
               <a
-                href="#availble"
-                class="py-2 px-3 rounded hover:text-indigo-600 hover:bg-indigo-50"
-                >Availble Jobs</a
+                href="#available"
+                class="py-2 px-3 rounded hover:text-indigo-600 hover:bg-indigo-50 transition"
+                >Available Jobs</a
               >
               <a
-                href="#home"
-                class="py-2 px-3 rounded hover:text-indigo-600 hover:bg-indigo-50"
+                href="#listing"
+                class="py-2 px-3 rounded hover:text-indigo-600 hover:bg-indigo-50 transition"
                 >Job Listing</a
               >
               <a
-                href="#home"
-                class="py-2 px-3 rounded hover:text-indigo-600 hover:bg-indigo-50"
+                href="#popular"
+                class="py-2 px-3 rounded hover:text-indigo-600 hover:bg-indigo-50 transition"
                 >Popular Jobs</a
               >
             </nav>
           </div>
 
-          <!-- button section -->
+          <!-- RIGHT SIDE BUTTONS -->
           <div class="flex items-center gap-3">
             <!-- Post Job -->
             <button
@@ -115,6 +115,49 @@
                   d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOBILE MENU (UI only; behavior not included) -->
+      <div
+        id="mobileMenu"
+        class="lg:hidden hidden border-t border-slate-200 bg-[#f9fafb]"
+      >
+        <div class="px-4 py-3 space-y-2">
+          <a
+            href="#home"
+            class="block py-2 text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 rounded px-2 transition"
+            >Home</a
+          >
+          <a
+            href="#available"
+            class="block py-2 text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 rounded px-2 transition"
+            >Available Jobs</a
+          >
+          <a
+            href="#listing"
+            class="block py-2 text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 rounded px-2 transition"
+            >Job Listing</a
+          >
+          <a
+            href="#popular"
+            class="block py-2 text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 rounded px-2 transition"
+            >Popular Jobs</a
+          >
+          <div class="pt-3 border-t border-slate-200 mt-3 flex gap-2">
+            <button
+              id="mLoginRecruiter"
+              class="flex-1 px-3 py-2 text-sm border border-slate-300 rounded hover:bg-slate-100 transition"
+            >
+              Recruiter
+            </button>
+            <button
+              id="mLoginSeeker"
+              class="flex-1 px-3 py-2 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700 transition"
+            >
+              Job Seeker
             </button>
           </div>
         </div>
@@ -331,24 +374,25 @@
     </section>
 
     <!-- Availble job section -->
-    <section id="availble" class="py-20 bg-[#f9fafb]">
+    <section id="available" class="py-20 bg-[#f9fafb]">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- heading -->
+        <!-- Heading -->
         <div class="text-center mb-14">
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-800">
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">
             Available <span class="text-indigo-600">Jobs</span>
           </h2>
           <p class="mt-3 text-lg text-slate-600">
-            Explore <span class="text-indigo-600 font-semibold">1234</span> open
-            roles from verified companies.
+            Explore
+            <span class="text-indigo-600 font-semibold">1,234</span> open roles
+            from verified companies.
           </p>
 
-          <!-- category button -->
+          <!-- Category Tabs -->
           <div
             class="mt-6 inline-flex bg-white border border-slate-200 rounded-full p-1 shadow-sm"
           >
             <button
-              class="px-6 py-2 rounded-full text-sm font-medium bg-indigo-600 text-white shadow transition"
+              class="px-5 py-2 rounded-full text-sm font-medium bg-indigo-600 text-white shadow transition"
             >
               All
             </button>
@@ -375,9 +419,9 @@
           </div>
         </div>
 
-        <!-- job cards -->
+        <!-- Job Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- card-1 -->
+          <!-- Card 1 -->
           <article
             class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
           >
@@ -487,7 +531,7 @@
             </div>
           </article>
 
-          <!-- card-2 -->
+          <!-- Card 2 -->
           <article
             class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
           >
@@ -495,18 +539,18 @@
               <div class="flex items-start justify-between">
                 <div class="flex items-center gap-3">
                   <div
-                    class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-sky-500 flex items-center justify-center text-white font-bold text-lg shadow-sm"
+                    class="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-sm"
                   >
-                    TW
+                    NL
                   </div>
                   <div>
                     <h3
                       class="text-lg font-semibold text-slate-800 hover:text-indigo-600 transition-colors"
                     >
-                      Frontend Developer (React)
+                      Full Stack Engineer (Node + React)
                     </h3>
                     <p class="text-sm text-slate-500 mt-0.5">
-                      TechWave • Bengaluru
+                      Nexa Labs • Hyderabad
                     </p>
                   </div>
                 </div>
@@ -531,64 +575,26 @@
               </div>
 
               <p class="mt-4 text-slate-600 text-sm leading-relaxed">
-                Build modern, responsive UIs with React and Tailwind.
-                Collaborate with product teams to deliver great user
-                experiences.
+                Develop scalable backend APIs using Node.js and deliver fast,
+                responsive React frontends. CI/CD and testing experience
+                preferred.
               </p>
 
               <div class="mt-5 flex items-center justify-between text-sm">
                 <div class="flex items-center gap-4 text-slate-500">
                   <div class="flex items-center gap-1.5">
-                    <svg
-                      class="w-4 h-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M12 6v12m6-6H6"
-                      />
-                    </svg>
-                    <span>6 - 10 LPA</span>
+                    <span>10 - 18 LPA</span>
                   </div>
                   <div class="flex items-center gap-1.5">
-                    <svg
-                      class="w-4 h-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M20.25 14.15v4.09a2.25 2.25 0 01-2.25 2.25h-13.5a2.25 2.25 0 01-2.25-2.25V6.3a2.25 2.25 0 012.25-2.25h4.09m6 0H21m-3.75 0V3.75m0 3.75L21 3.75M3.75 12h16.5"
-                      />
-                    </svg>
-                    <span>2 - 4 yrs</span>
+                    <span>3 - 7 yrs</span>
                   </div>
                 </div>
               </div>
             </div>
-
             <div
               class="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between rounded-b-2xl"
             >
-              <div class="flex items-center gap-2">
-                <span
-                  class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 rounded-md font-medium"
-                  >Remote</span
-                >
-                <span
-                  class="px-2 py-1 text-xs bg-sky-100 text-sky-700 rounded-md font-medium"
-                  >Full-time</span
-                >
-              </div>
+              <span class="text-xs text-slate-500">Posted 1 week ago</span>
               <button
                 class="applyBtn px-4 py-2 rounded-md bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 shadow-sm transition-all"
               >
@@ -597,7 +603,7 @@
             </div>
           </article>
 
-          <!-- card-3 -->
+          <!-- Card 3 -->
           <article
             class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
           >
@@ -605,100 +611,43 @@
               <div class="flex items-start justify-between">
                 <div class="flex items-center gap-3">
                   <div
-                    class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-sky-500 flex items-center justify-center text-white font-bold text-lg shadow-sm"
+                    class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-bold text-lg shadow-sm"
                   >
-                    TW
+                    IE
                   </div>
                   <div>
                     <h3
                       class="text-lg font-semibold text-slate-800 hover:text-indigo-600 transition-colors"
                     >
-                      Frontend Developer (React)
+                      Data Analyst
                     </h3>
                     <p class="text-sm text-slate-500 mt-0.5">
-                      TechWave • Bengaluru
+                      InsightEdge • Remote
                     </p>
                   </div>
                 </div>
-                <button
-                  class="text-slate-400 hover:text-indigo-600 transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
-                    />
-                  </svg>
-                </button>
               </div>
 
               <p class="mt-4 text-slate-600 text-sm leading-relaxed">
-                Build modern, responsive UIs with React and Tailwind.
-                Collaborate with product teams to deliver great user
-                experiences.
+                Analyze metrics, create dashboards, and present data-driven
+                insights. Strong SQL and Python skills required.
               </p>
 
               <div class="mt-5 flex items-center justify-between text-sm">
                 <div class="flex items-center gap-4 text-slate-500">
                   <div class="flex items-center gap-1.5">
-                    <svg
-                      class="w-4 h-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M12 6v12m6-6H6"
-                      />
-                    </svg>
-                    <span>6 - 10 LPA</span>
+                    <span>4 - 6 LPA</span>
                   </div>
                   <div class="flex items-center gap-1.5">
-                    <svg
-                      class="w-4 h-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M20.25 14.15v4.09a2.25 2.25 0 01-2.25 2.25h-13.5a2.25 2.25 0 01-2.25-2.25V6.3a2.25 2.25 0 012.25-2.25h4.09m6 0H21m-3.75 0V3.75m0 3.75L21 3.75M3.75 12h16.5"
-                      />
-                    </svg>
-                    <span>2 - 4 yrs</span>
+                    <span>1 - 3 yrs</span>
                   </div>
                 </div>
               </div>
             </div>
-
             <div
               class="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between rounded-b-2xl"
             >
-              <div class="flex items-center gap-2">
-                <span
-                  class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 rounded-md font-medium"
-                  >Remote</span
-                >
-                <span
-                  class="px-2 py-1 text-xs bg-sky-100 text-sky-700 rounded-md font-medium"
-                  >Full-time</span
-                >
-              </div>
+              <span class="text-xs text-slate-500">Posted 5 days ago</span>
               <button
                 class="applyBtn px-4 py-2 rounded-md bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 shadow-sm transition-all"
               >
@@ -707,10 +656,12 @@
             </div>
           </article>
         </div>
-        <div class="text-center mt-16">
+
+        <!-- View More -->
+        <div class="mt-14 text-center">
           <button
             id="viewMore"
-            class="px-6 py-3 rounded-lg font-semibold text-indigo-600 bg-white border border-indigo-300 hover:bg-indigo-50 hover:shadow-sm transition-all"
+            class="px-6 py-3 rounded-lg font-semibold text-indigo-600 bg-white border border-indigo-200 hover:bg-indigo-50 hover:shadow-sm transition-all"
           >
             View More Jobs
           </button>
@@ -733,8 +684,8 @@
             curated just for you.
           </p>
         </div>
-
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <!-- Sidebar Filters -->
           <aside class="lg:col-span-1">
             <div class="sticky top-24 space-y-6">
               <!-- Filters -->
@@ -851,28 +802,27 @@
             </div>
           </aside>
 
-          <!-- listing -->
+          <!-- Job Listings -->
           <main class="lg:col-span-3">
+            <!-- Header -->
             <div
-              class="flex flex-col sm:flex-row items-center justify-between mb-7"
+              class="flex flex-col sm:flex-row items-center justify-between mb-6"
             >
               <h3 class="text-2xl font-bold text-slate-800">
-                <span class="text-indigo-600">1234</span> Jobs found
+                <span class="text-indigo-600">1,234</span> jobs found
               </h3>
-
               <div class="flex items-center gap-3 mt-3 sm:mt-0">
-                <span class="text-sm text-slate-600">Sort By:</span>
+                <span class="text-sm text-slate-600">Sort by:</span>
                 <select
-                  name=""
-                  id=""
-                  class="px-3 py-2 border border-slate-400 bg-white rounded-lg text-sm focus:ring-indigo-300"
+                  class="px-3 py-2 border border-slate-300 bg-white rounded-lg text-sm focus:ring-2 focus:ring-indigo-300"
                 >
-                  <option value="">Most Relevant</option>
-                  <option value="">Date Posted</option>
-                  <option value="">Highest Salary</option>
+                  <option>Most Relevant</option>
+                  <option>Date Posted</option>
+                  <option>Highest Salary</option>
                 </select>
               </div>
             </div>
+
             <!-- Job Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <!-- Job Card 1 -->
@@ -1248,7 +1198,7 @@
               </div>
             </div>
 
-            <!-- footer -->
+            <!-- Footer Pagination -->
             <div class="mt-8 flex items-center justify-between">
               <p class="text-sm text-slate-600">Showing 1 - 4 of 1,234</p>
               <div class="flex items-center gap-2">
@@ -1279,10 +1229,7 @@
         >
           <div>
             <h2 class="text-3xl font-extrabold text-slate-900">
-              Popular
-              <span class="text-indigo-600"
-                >Jobs -- Should be done by candidates -Home Work</span
-              >
+              Popular <span class="text-indigo-600">Jobs</span>
             </h2>
             <p class="mt-2 text-slate-600">
               Roles trending this week among top companies.
@@ -1532,5 +1479,35 @@
         </form>
       </div>
     </div>
+
+    <script>
+      function toggleModal(openBtnId, modalId, closeSelectors) {
+        const modal = document.getElementById(modalId);
+        const openBtn = document.getElementById(openBtnId);
+        const close = document.querySelectorAll(closeSelectors);
+
+        if (!modal || !openBtn) return;
+
+        openBtn.addEventListener("click", () => {
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+        });
+
+        close.forEach((btn) => {
+          btn.addEventListener("click", () => modal.classList.add("hidden"));
+        });
+
+        //apply now
+
+        document.querySelectorAll(".applyBtn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const modal = document.getElementById("applyModal");
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+          });
+        });
+        toggleModal("closeApply", "applyModal", "#closeApply", "#cancelApply");
+      }
+    </script>
   </body>
 </html>
