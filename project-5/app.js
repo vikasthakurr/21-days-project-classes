@@ -1,7 +1,10 @@
-const rosterURL = "https://jsonplaceholder.typicode.com/users?_limit=10"; //api for roster
-const clockUrl = "https://worldtimeapi.org/api/timezone/Asia/Kolkata"; // api for world clock
+const rosterUrl = "https://jsonplaceholder.typicode.com/users?_limit=10";
+// Fake API to fetch 10 random providers
 
-//all major access in which we will feed the data
+const clockUrl = "https://worldtimeapi.org/api/timezone/Asia/Kolkata";
+// Real time API to sync with internet clock (IST)
+
+// All major UI components selected once to improve performance
 const providerSelect = document.getElementById("providerSelect");
 const dateInput = document.getElementById("dateInput");
 const loadSlotsBtn = document.getElementById("loadSlotsBtn");
@@ -16,7 +19,7 @@ const statBookings = document.getElementById("statBookings");
 const statClock = document.getElementById("statClock");
 const lastSync = document.getElementById("lastSync");
 
-//code for modal
+// Modal elements
 const confirmModal = new bootstrap.Modal(
   document.getElementById("confirmModal")
 );
@@ -25,62 +28,66 @@ const confirmMeta = document.getElementById("confirmMeta");
 const confirmBtn = document.getElementById("confirmBtn");
 const notesInput = document.getElementById("notesInput");
 
-//code for current state
+// Tracks current app state in one place
 const state = {
-  providers: [],
-  nowUtc: null,
-  target: null,
-  bookings: [],
-  pendingSlot: null,
+  providers: [], // list of all providers
+  nowUtc: null, // synced internet clock
+  target: null, // currently selected provider + date
+  bookings: [], // all booked slots
+  pendingSlot: null, // temporary slot before confirmation
 };
 
-function saveBookings() {
-  localStorage.setItem("quick-slots", JSON.stringify(state.bookings));
-  statBookings.textContent = state.bookings.length; //update the booked slots
-}
 
 function readBookings() {
-  state.bookings = JSON.parse(localStorage.getItem("quick-slots") || "[]");
+  // Get bookings from LocalStorage or use empty array
+  state.bookings = JSON.parse(
+    localStorage.getItem("quickslot-bookings") || "[]"
+  );
 }
 
-//api calling
+
+function saveBookings() {
+  localStorage.setItem("quickslot-bookings", JSON.stringify(state.bookings));
+  statBookings.textContent = state.bookings.length; // Update dashboard stat
+}
+
 async function fetchProviders() {
-  providerSelect.Disabled = true;
-  providerSelect.innerHTML = `<option>Loading roster....</option>`;
+  providerSelect.disabled = true;
+  providerSelect.innerHTML = `<option>Loading roster…</option>`;
 
   try {
-    const res = await fetch(rosterURL);
+    const res = await fetch(rosterUrl);
     const data = await res.json();
 
+    // Map API data to simple provider objects
     state.providers = data.map((person) => ({
       id: person.id,
       name: person.name,
-      specialty: person.company?.bs || "General",
-      city: person.address?.city || "remote",
+      specialty: person.company?.bs || "Generalist",
+      city: person.address?.city || "Remote",
     }));
+
     statProviders.textContent = state.providers.length;
     renderProviderSelect();
   } catch (err) {
-    providerSelect.innerHTML = `<option>Error Loading name...</option>`;
-    console.log(err);
+    providerSelect.innerHTML = `<option>Error loading providers</option>`;
+    console.error(err);
   }
 }
-fetchProviders();
 
-//render function
 function renderProviderSelect() {
   providerSelect.disabled = false;
-  providerSelect.innerHTML = `<option value =">Select Providers</option>`;
+  providerSelect.innerHTML = `<option value="">Select provider</option>`;
 
+  // Create <option> for each provider
   state.providers.forEach((p) => {
     const opt = document.createElement("option");
     opt.value = p.id;
-    opt.textContent = `${p.name} - ${p.specialty}`;
+    opt.textContent = `${p.name} — ${p.specialty}`;
     providerSelect.appendChild(opt);
   });
 }
 
-//api call for clock
 
 async function syncClock() {
   try {
@@ -111,15 +118,14 @@ async function syncClock() {
     )}`;
   }
 }
-syncClock();
+
 
 function setMinDate() {
-  const today = new Date().toISOString.split("T")[0];
+  const today = new Date().toISOString().split("T")[0]; // yyyy-mm-dd
   dateInput.min = today;
   dateInput.value = today;
 }
 
-//slot builder from 9 to 5
 function buildSlots(date) {
   const slots = [];
 
@@ -136,8 +142,6 @@ function buildSlots(date) {
     disabled: isSlotDisabled(date, label),
   }));
 }
-
-//disabled slot
 
 function isSlotDisabled(date, slotLabel) {
   // Convert slot + date → JS Date()
@@ -157,6 +161,7 @@ function isSlotDisabled(date, slotLabel) {
 
   return alreadyBooked;
 }
+
 
 function renderSlots(providerId, date) {
   const provider = state.providers.find((p) => p.id === Number(providerId));
@@ -204,20 +209,22 @@ function renderSlots(providerId, date) {
   });
 }
 
-//open modal
+
 function openModal(provider, date, slotLabel) {
   state.pendingSlot = { provider, date, slotLabel };
+
   confirmTitle.textContent = provider.name;
-  confirmMeta.textContent = `${date} . ${slotLabel} IST`;
+  confirmMeta.textContent = `${date} · ${slotLabel} IST`;
   notesInput.value = "";
+
   confirmModal.show();
 }
 
 confirmBtn.addEventListener("click", () => {
-  if (!state.pendingSlot) return;
+  if (!state.pendingSlot) return; // safety check
 
   const payload = {
-    id: crypto.randomUUID(),
+    id: crypto.randomUUID(), // unique booking id
     providerId: state.pendingSlot.provider.id,
     provider: state.pendingSlot.provider.name,
     specialty: state.pendingSlot.provider.specialty,
@@ -225,15 +232,15 @@ confirmBtn.addEventListener("click", () => {
     slot: state.pendingSlot.slotLabel,
     notes: notesInput.value.trim(),
   };
+
   state.bookings.push(payload);
-  saveBookings();
+
+  saveBookings(); // persist
   renderSlots(state.pendingSlot.provider.id, state.pendingSlot.date);
-  readBookings();
-  //   sendMail(payload) //u have to use SMTP and this is optional
+  renderBookings();
+  sendConfirmationEmail(payload); // optional API
   confirmModal.hide();
 });
-
-//booked appointments
 
 function renderBookings() {
   bookingsList.innerHTML = "";
@@ -275,12 +282,21 @@ function renderBookings() {
     });
 }
 
-//clear booking
+
+function cancelBooking(id) {
+  state.bookings = state.bookings.filter((booking) => booking.id !== id);
+  saveBookings();
+  renderBookings();
+
+  if (state.target) {
+    renderSlots(state.target.providerId, state.target.date);
+  }
+}
 
 clearBookingsBtn.addEventListener("click", () => {
   if (!state.bookings.length) return;
 
-  if (confirm("clear all booking?")) {
+  if (confirm("Clear all stored bookings?")) {
     state.bookings = [];
     saveBookings();
     renderBookings();
@@ -288,19 +304,20 @@ clearBookingsBtn.addEventListener("click", () => {
   }
 });
 
+
 loadSlotsBtn.addEventListener("click", async () => {
   const providerId = providerSelect.value;
   const date = dateInput.value;
 
   if (!providerId || !date) {
-    alert("please select the provider");
+    alert("Select provider and date");
     return;
   }
-  await syncClock();
+
+  await syncClock(); // ensure time accuracy
   renderSlots(providerId, date);
 });
 
-//refresh btn
 
 refreshBtn.addEventListener("click", async () => {
   await syncClock();
@@ -310,9 +327,13 @@ refreshBtn.addEventListener("click", async () => {
 async function init() {
   readBookings();
   statBookings.textContent = state.bookings.length;
-  setMinDate(); //prevent the user  selecting the past date
 
+  setMinDate(); // prevent selecting past dates
+
+  // Load providers + sync clock in parallel
   await Promise.all([fetchProviders(), syncClock()]);
-  readBookings();
+
+  renderBookings();
 }
+
 document.addEventListener("DOMContentLoaded", init);
