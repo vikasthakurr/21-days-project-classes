@@ -37,14 +37,12 @@ const state = {
   pendingSlot: null, // temporary slot before confirmation
 };
 
-
 function readBookings() {
   // Get bookings from LocalStorage or use empty array
   state.bookings = JSON.parse(
     localStorage.getItem("quickslot-bookings") || "[]"
   );
 }
-
 
 function saveBookings() {
   localStorage.setItem("quickslot-bookings", JSON.stringify(state.bookings));
@@ -88,7 +86,6 @@ function renderProviderSelect() {
   });
 }
 
-
 async function syncClock() {
   try {
     const res = await fetch(clockUrl);
@@ -118,7 +115,6 @@ async function syncClock() {
     )}`;
   }
 }
-
 
 function setMinDate() {
   const today = new Date().toISOString().split("T")[0]; // yyyy-mm-dd
@@ -161,7 +157,6 @@ function isSlotDisabled(date, slotLabel) {
 
   return alreadyBooked;
 }
-
 
 function renderSlots(providerId, date) {
   const provider = state.providers.find((p) => p.id === Number(providerId));
@@ -208,7 +203,6 @@ function renderSlots(providerId, date) {
     slotsGrid.appendChild(col);
   });
 }
-
 
 function openModal(provider, date, slotLabel) {
   state.pendingSlot = { provider, date, slotLabel };
@@ -282,7 +276,6 @@ function renderBookings() {
     });
 }
 
-
 function cancelBooking(id) {
   state.bookings = state.bookings.filter((booking) => booking.id !== id);
   saveBookings();
@@ -304,7 +297,6 @@ clearBookingsBtn.addEventListener("click", () => {
   }
 });
 
-
 loadSlotsBtn.addEventListener("click", async () => {
   const providerId = providerSelect.value;
   const date = dateInput.value;
@@ -317,7 +309,6 @@ loadSlotsBtn.addEventListener("click", async () => {
   await syncClock(); // ensure time accuracy
   renderSlots(providerId, date);
 });
-
 
 refreshBtn.addEventListener("click", async () => {
   await syncClock();
@@ -337,3 +328,8 @@ async function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+//task that u need to do before submitting
+//u have to add a mail function or it can a dummy
+//change the ui but keep the functionality same..
+// add a login and signup page ui so user can login then book slot
