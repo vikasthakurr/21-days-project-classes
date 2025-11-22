@@ -1,0 +1,168 @@
+:root {
+  --qs-primary: #4f46e5;
+  --qs-dark: #0f172a;
+}
+
+/* Base */
+body {
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: #f5f6fa;
+  min-height: 100vh;
+  color: var(--qs-dark);
+}
+
+.qs-hero {
+  border-radius: 2rem;
+  background: linear-gradient(135deg, #4f46e5, #312e81 35%, #1e1b4b);
+  color: #fff;
+  padding: 4rem 3rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Badge */
+.qs-badge span {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.45rem 1rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  backdrop-filter: blur(6px);
+}
+
+/* Hero Title */
+.qs-title {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #a5b4fc, #c7d2fe, #f5f3ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtitle */
+.qs-subtitle {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 540px;
+}
+
+/* Hero Stats */
+.qs-stat {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 1rem 1.3rem;
+  border-radius: 1.25rem;
+  min-width: 120px;
+  backdrop-filter: blur(8px);
+  transition: 0.2s ease;
+}
+
+.qs-stat:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.qs-stat .label {
+  font-size: 0.7rem;
+  opacity: 0.75;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.qs-stat .value {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.qs-stat .value-small {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Right Glass Panel */
+.qs-panel {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  color: #222;
+}
+
+/* Online Status Dot */
+.qs-online-dot {
+  width: 12px;
+  height: 12px;
+  background: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #22c55e;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.stat-card {
+  border-radius: 1.25rem;
+  background: #fff;
+  color: var(--qs-dark);
+  padding: 1.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+
+.stat-label {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.7rem;
+  opacity: 0.6;
+  color: #718096;
+}
+
+.slot-card {
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e0;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  cursor: pointer;
+}
+
+.slot-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.05);
+}
+
+.slot-card.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background: #edf2f7;
+}
+
+.booking-card {
+  border-radius: 0.75rem;
+  border: 1px solid #cbd5e0;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.badge-streaming::before {
+  content: "\25cf";
+  margin-right: 0.35rem;
+  color: #22c55e;
+}
+
+.modal-content {
+  border-radius: 1rem;
+}
