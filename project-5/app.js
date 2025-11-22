@@ -65,7 +65,7 @@ async function fetchProviders() {
     console.log(err);
   }
 }
-// fetchProviders();
+fetchProviders();
 
 //render function
 function renderProviderSelect() {
@@ -111,7 +111,7 @@ async function syncClock() {
     )}`;
   }
 }
-// syncClock();
+syncClock();
 
 function setMinDate() {
   const today = new Date().toISOString.split("T")[0];
@@ -212,3 +212,99 @@ function openModal(provider, date, slotLabel) {
   notesInput.value = "";
   confirmModal.show();
 }
+
+confirmBtn.addEventListener("click", () => {
+  if (!state.pendingSlot) return;
+
+  const payload = {
+    id: crypto.randomUUID(),
+    providerId: state.pendingSlot.provider.id,
+    provider: state.pendingSlot.provider.name,
+    specialty: state.pendingSlot.provider.specialty,
+    date: state.pendingSlot.date,
+    slot: state.pendingSlot.slotLabel,
+    notes: notesInput.value.trim(),
+  };
+  state.bookings.push(payload);
+  saveBookings();
+  renderSlots(state.pendingSlot.provider.id, state.pendingSlot.date);
+  readBookings();
+  //   sendMail(payload) //u have to use SMTP and this is optional
+  confirmModal.hide();
+});
+
+//booked appointments
+
+function renderBookings() {
+  bookingsList.innerHTML = "";
+
+  // Empty state message
+  if (!state.bookings.length) {
+    bookingsList.innerHTML = `<div class="text-secondary small">No bookings yet.</div>`;
+    return;
+  }
+
+  // Sort by date+time for clean ordering
+  state.bookings
+    .slice()
+    .sort((a, b) => `${a.date}${a.slot}`.localeCompare(`${b.date}${b.slot}`))
+    .forEach((booking) => {
+      const card = document.createElement("div");
+      card.className = "booking-card";
+
+      card.innerHTML = `
+        <div class="d-flex justify-content-between align-items-start gap-3">
+          <div>
+            <div class="fw-semibold">${booking.provider}</div>
+            <div class="small text-secondary">${booking.date} · ${
+        booking.slot
+      }</div>
+            <div class="small text-muted">${booking.notes || "No notes"}</div>
+          </div>
+
+          <button class="btn btn-sm btn-outline-danger" data-id="${booking.id}">
+            <i class="bi bi-x"></i>
+          </button>
+        </div>
+      `;
+
+      // Remove booking on click
+      card.querySelector("button").onclick = () => cancelBooking(booking.id);
+
+      bookingsList.appendChild(card);
+    });
+}
+
+//clear booking
+
+clearBookingsBtn.addEventListener("click", () => {
+  if (!state.bookings.length) return;
+
+  if (confirm("clear all booking?")) {
+    state.bookings = [];
+    saveBookings();
+    renderBookings();
+    if (state.target) renderSlots(state.target.providerId, state.target.date);
+  }
+});
+
+loadSlotsBtn.addEventListener("click", async () => {
+  const providerId = providerSelect.value;
+  const date = dateInput.value;
+
+  if (!providerId || !date) {
+    alert("please select the provider");
+    return;
+  }
+  await syncClock();
+  renderSlots(providerId, date);
+});
+
+//refresh btn
+
+refreshBtn.addEventListener("click", async () => {
+  await syncClock();
+  if (state.target) renderSlots(state.target.providerId, state.target.date);
+});
+
+
