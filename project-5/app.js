@@ -307,4 +307,12 @@ refreshBtn.addEventListener("click", async () => {
   if (state.target) renderSlots(state.target.providerId, state.target.date);
 });
 
+async function init() {
+  readBookings();
+  statBookings.textContent = state.bookings.length;
+  setMinDate(); //prevent the user  selecting the past date
 
+  await Promise.all([fetchProviders(), syncClock()]);
+  readBookings();
+}
+document.addEventListener("DOMContentLoaded", init);
