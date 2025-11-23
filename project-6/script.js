@@ -1,4 +1,3 @@
-//schema for resume
 const schema = [
   {
     id: "identity",
@@ -210,8 +209,6 @@ const EXPORT_STYLES = `
   .export-card { border: 1px solid #e9ecef; border-radius: .75rem; padding: 1rem; margin-bottom: 1rem; background: #f8f9fa; }
 `;
 
-//DOM ACCESS
-
 const form = document.getElementById("resumeForm");
 const preview = document.getElementById("resumePreview");
 const templateSelect = document.getElementById("templateSelect");
@@ -227,15 +224,15 @@ const previewPane = document.querySelector(".preview-pane");
 const previewBgButtons = document.querySelectorAll("[data-preview-bg]");
 const themeToggle = document.getElementById("themeToggle");
 
-const collection = {};
+const collections = {};
 const navButtons = new Map();
 const templateButtons = new Map();
 let sectionObserver;
 
-//start function
-
 startApp();
+
 function startApp() {
+  // Role: bootstraps templates, form, bindings, and initial render.
   setupTemplates();
   buildForm();
   bindUI();
@@ -246,10 +243,12 @@ function startApp() {
 }
 
 function setupTemplates() {
+  // Role: fills template selector + pills and hooks template switching.
   templateSelect.innerHTML = "";
-  if (!templatePills) {
+  if (templatePills) {
     templatePills.innerHTML = "";
   }
+
   Object.entries(templates).forEach(([key, template]) => {
     const option = document.createElement("option");
     option.value = key;
@@ -271,7 +270,7 @@ function setupTemplates() {
   });
 
   templateSelect.value = state.templateKey;
-  templateSelect.addEventListener("click", (e) => {
+  templateSelect.addEventListener("change", (e) => {
     state.templateKey = e.target.value;
     markTemplate(state.templateKey);
     drawPreview();
@@ -329,7 +328,6 @@ function buildForm() {
   });
 }
 
-//add fields
 function buildField(section, field, index = null) {
   // Role: creates a single input/textarea for the form schema.
   const fieldId =
@@ -428,6 +426,7 @@ function removeRepeater(sectionId, card) {
 }
 
 function drawPreview() {
+  // Role: regenerates the resume preview pane HTML.
   const template = templates[state.templateKey];
   const prepared = prepareData();
   preview.className = `resume-preview ${template.className}`;
@@ -436,6 +435,7 @@ function drawPreview() {
 }
 
 function prepareData() {
+  // Role: normalizes state into template-friendly data.
   const payload = { ...state.data };
   payload.skillsArray = (payload.skills || "")
     .split(",")
@@ -455,4 +455,149 @@ function prepareData() {
   }));
 
   return payload;
+}
+
+function drawListSection(title, items = [], renderer) {
+  // Role: renders a titled list-style resume section.
+  if (!items.length) return "";
+  return `
+    <section>
+      <h2>${title}</h2>
+      ${items.map(renderer).join("")}
+    </section>
+  `;
+}
+
+function drawCardList(items = [], renderer) {
+  if (!items.length)
+    return `<p class="text-muted">Add entries in the form.</p>`;
+  return items
+    .map(
+      (item) => `
+      <div class="border rounded-3 p-3 mb-3 bg-light export-card">
+        ${renderer(item)}
+      </div>
+    `
+    )
+    .join("");
+}
+
+function drawHighlights(highlights = []) {
+  const filtered = (Array.isArray(highlights) ? highlights : [])
+    .map((line) => line.trim())
+    .filter(Boolean);
+  if (!filtered.length) return "";
+  return `
+    <ul>
+      ${filtered.map((line) => `<li>${line}</li>`).join("")}
+    </ul>
+  `;
+}
+
+function drawSkills(skills = []) {
+  if (!skills?.length) return "";
+  return `
+    <section>
+      <h2>Skills</h2>
+      <div class="d-flex flex-wrap">
+        ${skills
+          .map(
+            (skill) =>
+              `<span class="badge rounded-pill badge-skill">${skill}</span>`
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function drawBadges(items) {
+  if (!items.length) return "";
+  return items
+    .map((item) => `<span class="badge text-bg-light">${item}</span>`)
+    .join("");
+}
+
+function joinValues(values, separator = " ") {
+  return values.filter(Boolean).join(separator);
+}
+
+function cleanValues(values = []) {
+  return values.filter(Boolean);
+}
+
+function defaultSummary() {
+  // Role: returns fallback copy for empty summaries.
+  return "Seasoned professional focused on measurable business value and elegant systems.";
+}
+
+function bindUI() {
+  if (templateCount) {
+    templateCount.textContent = Object.keys(templates).length;
+  }
+  if (sectionCount) {
+    sectionCount.textContent = schema.length;
+  }
+
+  previewBgButtons.forEach((btn) =>
+    btn.addEventListener("click", () => setPreviewBg(btn.dataset.previewBg))
+  );
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", toggleTheme);
+  }
+}
+
+function markTemplate(key) {
+  // Role: highlights the active template pill button.
+  templateButtons.forEach((pill, templateKey) => {
+    pill.classList.toggle("active", templateKey === key);
+  });
+}
+
+function addSectionLink(section) {
+  // Role: adds a nav button for a form section.
+  if (!sectionNav) return;
+  const button = document.createElement("button");
+  button.type = "button";
+  button.textContent = section.title;
+  button.addEventListener("click", () => {
+    document.getElementById(section.id)?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  });
+  sectionNav.appendChild(button);
+  navButtons.set(section.id, button);
+}
+
+function watchSections(entries) {
+  // Role: tracks which section is within view.
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      setActiveSection(entry.target.id);
+    }
+  });
+}
+
+function setActiveSection(sectionId) {
+  // Role: marks the nav button that is in view.
+  navButtons.forEach((button, id) => {
+    button.classList.toggle("active", id === sectionId);
+  });
+}
+
+function setPreviewBg(mode) {
+  // Role: changes preview background treatment.
+  previewBgButtons.forEach((btn) =>
+    btn.classList.toggle("active", btn.dataset.previewBg === mode)
+  );
+  if (!previewPane) return;
+  previewPane.classList.remove("grid", "slate");
+  if (mode === "grid") {
+    previewPane.classList.add("grid");
+  }
+  if (mode === "slate") {
+    previewPane.classList.add("slate");
+  }
 }
