@@ -277,3 +277,136 @@ function setupTemplates() {
     drawPreview();
   });
 }
+
+function buildForm() {
+  // Role: builds schema-driven form sections and observers.
+  sectionObserver = new IntersectionObserver(watchSections, {
+    root: null, // root: null means the browser viewport acts as the observation root.
+    threshold: 0.35, // threshold: callback fires when 35% of the section is visible.
+  });
+
+  schema.forEach((section) => {
+    const wrapper = document.createElement("section");
+    wrapper.className = "vstack gap-3 border-bottom pb-4";
+    wrapper.dataset.section = section.id;
+    wrapper.id = section.id;
+
+    const heading = document.createElement("div");
+    heading.className = "form-section-title";
+    heading.textContent = section.title;
+    wrapper.appendChild(heading);
+
+    if (section.repeatable) {
+      const collection = document.createElement("div");
+      collection.className = "vstack gap-3";
+      collection.dataset.collection = section.id;
+      collections[section.id] = collection;
+      wrapper.appendChild(collection);
+
+      const controls = document.createElement("div");
+      controls.className = "d-flex justify-content-end";
+      const addBtn = document.createElement("button");
+      addBtn.type = "button";
+      addBtn.className = "btn btn-sm btn-outline-primary";
+      addBtn.textContent = `Add ${section.title}`;
+      addBtn.addEventListener("click", () => addRepeater(section, collection));
+      controls.appendChild(addBtn);
+      wrapper.appendChild(controls);
+
+      addRepeater(section, collection);
+    } else {
+      const sectionBody = document.createElement("div");
+      sectionBody.className = "vstack gap-3";
+      section.fields.forEach((field) => {
+        sectionBody.appendChild(buildField(section, field));
+      });
+      wrapper.appendChild(sectionBody);
+    }
+
+    form.appendChild(wrapper);
+    addSectionLink(section);
+    sectionObserver.observe(wrapper);
+  });
+}
+
+//add fields
+function buildField(section, field, index = null) {
+  // Role: creates a single input/textarea for the form schema.
+  const fieldId =
+    index !== null
+      ? `${section.id}-${field.key}-${index}`
+      : `${section.id}-${field.key}`;
+  const container = document.createElement("div");
+
+  const label = document.createElement("label");
+  label.className = "form-label small text-uppercase text-muted";
+  label.htmlFor = fieldId;
+  label.textContent = field.label;
+
+  let input;
+  if (field.type === "textarea") {
+    input = document.createElement("textarea");
+    input.rows = field.rows || 4;
+    input.className = "form-control";
+  } else {
+    input = document.createElement("input");
+    input.type = field.type;
+    input.className = "form-control";
+  }
+  input.placeholder = field.placeholder || "";
+  input.id = fieldId;
+  input.dataset.section = section.id;
+  input.dataset.key = field.key;
+  if (index !== null) {
+    input.dataset.index = index;
+  }
+  input.addEventListener("input", handleInput);
+
+  container.appendChild(label);
+  container.appendChild(input);
+  return container;
+}
+
+function handleInput(event) {
+  // Role: syncs user input into state then refreshes preview stats.
+  const { section, key, index } = event.target.dataset;
+  const value = event.target.value;
+
+  if (isRepeater(section)) {
+    const idx = Number(index);
+    state.data[section] = state.data[section] || [];
+    state.data[section][idx] = state.data[section][idx] || {};
+    state.data[section][idx][key] = value;
+  } else {
+    state.data[key] = value;
+  }
+  drawPreview();
+  refreshStats();
+}
+
+function isRepeater(sectionId) {
+  // Role: tells whether a schema section supports repeats.
+  return schema.find((section) => section.id === sectionId)?.repeatable;
+}
+
+function addRepeater(section, collection) {
+  // Role: inserts a repeatable section card with inputs.
+  const index = collection.childElementCount;
+  const card = document.createElement("div");
+  card.className = "border rounded-3 p-3 bg-light position-relative";
+  card.dataset.index = index;
+
+  section.fields.forEach((field) => {
+    card.appendChild(buildField(section, field, index));
+  });
+
+  if (index > 0) {
+    const removeBtn = document.createElement("button");
+    removeBtn.type = "button";
+    removeBtn.className = "btn-close position-absolute top-0 end-0 m-2";
+    removeBtn.addEventListener("click", () => removeRepeater(section.id, card));
+    card.appendChild(removeBtn);
+  }
+
+  collection.appendChild(card);
+}
