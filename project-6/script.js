@@ -410,3 +410,49 @@ function addRepeater(section, collection) {
 
   collection.appendChild(card);
 }
+
+function removeRepeater(sectionId, card) {
+  const collection = card.parentElement;
+  collection.removeChild(card);
+  Array.from(collection.children).forEach((child, idx) => {
+    child.dataset.index = idx;
+    child.querySelectorAll("[data-index]").forEach((input) => {
+      input.dataset.index = idx;
+    });
+  });
+  if (state.data[sectionId]) {
+    state.data[sectionId].splice(Number(card.dataset.index), 1);
+  }
+  drawPreview();
+  refreshStats();
+}
+
+function drawPreview() {
+  const template = templates[state.templateKey];
+  const prepared = prepareData();
+  preview.className = `resume-preview ${template.className}`;
+  preview.innerHTML = template.render(prepared);
+  refreshMeta();
+}
+
+function prepareData() {
+  const payload = { ...state.data };
+  payload.skillsArray = (payload.skills || "")
+    .split(",")
+    .map((skill) => skill.trim())
+    .filter(Boolean);
+
+  payload.experience = (payload.experience || []).map((item = {}) => ({
+    ...item,
+    highlights: (item.highlights || "")
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean),
+  }));
+
+  payload.education = (payload.education || []).map((item = {}) => ({
+    ...item,
+  }));
+
+  return payload;
+}
