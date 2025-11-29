@@ -298,3 +298,21 @@ window.addEventListener("beforeunload", saveTasks);
 render();
 
 //dummy task
+function uid() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+}
+
+if (tasks.length === 0) {
+  tasks.push({
+    id: uid(), // Call the uid() function here
+    title: "Welcome to Project-7",
+    notes: "use the project 7 code to build the full project",
+    priority: "high",
+    due: null,
+    done: false,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    reminded: false,
+  });
+  saveTasks();
+}
