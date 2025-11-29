@@ -1,3 +1,4 @@
+const LS_KEY = "taskmate.tasks.v1";
 const form = document.getElementById("taskForm");
 const titleIn = document.getElementById("title");
 const notesIn = document.getElementById("notes");
@@ -12,16 +13,15 @@ const editingId = document.getElementById("editingId");
 const notifyPermBtn = document.getElementById("notifyPermBtn");
 const clearAllBtn = document.getElementById("clearAllBtn");
 
-const LS_KEY = "taskmate.tasks.v1";
+let tasks = loadTasks();
 
-let tasks = loadTask();
-
-function loadTask() {
+// ===== Storage helpers =====
+function loadTasks() {
   try {
     const raw = localStorage.getItem(LS_KEY);
     return raw ? JSON.parse(raw) : [];
   } catch (e) {
-    console.log("loading error", e);
+    console.error("load error", e);
     return [];
   }
 }
@@ -30,12 +30,11 @@ function saveTasks() {
   render();
 }
 
-//unique id function
+// ===== Utilities =====
 function uid() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
 }
-
-function fmtDate(d) {
+function fmtDateISO(d) {
   try {
     const dt = new Date(d);
     if (isNaN(dt)) return "";
@@ -45,29 +44,27 @@ function fmtDate(d) {
   }
 }
 
+// ===== CRUD operations =====
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-
   const title = titleIn.value.trim();
   if (!title) return titleIn.focus();
-
   const notes = notesIn.value.trim();
-
   const due = dueIn.value
-    ? new Date(dueIn.value + "T00:00:00").toString()
+    ? new Date(dueIn.value + "T00:00:00").toISOString()
     : null;
-
   const priority = priorityIn.value;
   const editing = editingId.value;
 
   if (editing) {
+    // update
     const t = tasks.find((x) => x.id === editing);
     if (t) {
       t.title = title;
       t.notes = notes;
       t.due = due;
       t.priority = priority;
-      t.updateAt = new Date().toISOString();
+      t.updatedAt = new Date().toISOString();
     }
     editingId.value = "";
     document.getElementById("saveBtn").textContent = "Add Task";
@@ -80,24 +77,22 @@ form.addEventListener("submit", (e) => {
       priority,
       done: false,
       createdAt: new Date().toISOString(),
-      updateAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
       reminded: false,
     };
     tasks.unshift(newTask);
   }
+
   saveTasks();
   form.reset();
 });
-
-//update operation
 
 function editTask(id) {
   const t = tasks.find((x) => x.id === id);
   if (!t) return;
   titleIn.value = t.title;
   notesIn.value = t.notes || "";
-  priorityIn.value = t.priority || "low";
-
+  priorityIn.value = t.priority || "medium";
   if (t.due) {
     const dt = new Date(t.due);
     const pad = (n) => String(n).padStart(2, "0");
@@ -109,17 +104,26 @@ function editTask(id) {
   }
   editingId.value = id;
   document.getElementById("saveBtn").textContent = "Save";
-  window.scrollTo({ behavior: "smooth", top: 0 });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+function toggleDone(id) {
+  const t = tasks.find((x) => x.id === id);
+  if (!t) return;
+  t.done = !t.done;
+  t.updatedAt = new Date().toISOString();
+  saveTasks();
+}
 function removeTask(id) {
-  if (!confirm("want to delete?")) return;
+  if (!confirm("Delete this task?")) return;
   tasks = tasks.filter((x) => x.id !== id);
   saveTasks();
 }
 
 function clearAll() {
-  if (!confirm("want to clear all task")) return;
+  if (!confirm("Clear all tasks permanently?")) return;
   tasks = [];
   saveTasks();
 }
+
+clearAllBtn.addEventListener("click", clearAll);
