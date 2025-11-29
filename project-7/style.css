@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg: #f1f5f9; /* background color */
+  --card: #ffffff; /* card color */
+  --border: #e2e8f0; /* border color */
+  --text: #334155; /* text color */
+  --text-muted: #64748b; /* muted text color */
+  --accent: #6366f1; /* accent color */
+  --accent-hover: #6c63ff; /* accent hover color */
+  --success: #3fb950; /* success color */
+  --danger: #f85149; /* danger color */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.app {
+  width: 100%;
+  max-width: 1024px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  border-radius: 0.5rem;
+}
+
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1.5rem;
+}
+
+/* New task form */
+form .row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+form .row:last-child {
+  margin-bottom: 0;
+}
+
+.field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+  transition: all 0.2s;
+}
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.2);
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.btn {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: var(--bg);
+  font-weight: 600;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.btn.ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+.btn.ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background-color: rgba(88, 166, 255, 0.1);
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.search {
+  flex: 1;
+}
+
+/* Tasks list */
+.list {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 0.75rem;
+}
+.task {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+.task:hover {
+  border-color: var(--border);
+}
+
+.task .left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+.title {
+  font-weight: 600;
+}
+.meta {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.chip {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+.completed .title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+.completed .meta {
+  text-decoration: line-through;
+}
+
+.small {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 880px) {
+  body {
+    padding: 1rem;
+  }
+  .top {
+    grid-template-columns: 1fr;
+  }
+  .controls {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  header {
+    gap: 1rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

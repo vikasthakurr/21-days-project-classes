@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project-7</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TaskMate Tasks & Reminders</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="app">
       <header>
-        <h1>GeeksforGeeks TaskBar</h1>
+        <h1>Geeksforgeeks TaskBoard</h1>
         <div class="controls">
-          <button id="noitifyBtn">Enable Notification</button>
-          <button id="clearAllBtn">Clear All</button>
+          <button id="notifyPermBtn" class="btn ghost">
+            Enable Notifications
+          </button>
+          <button id="clearAllBtn" class="btn ghost" title="Clear everything">
+            Clear All
+          </button>
         </div>
       </header>
 
@@ -70,37 +74,39 @@
           </form>
         </div>
 
-        <div class="card right-card">
+        <div class="card right-card" style="width: 650px;">
           <div class="filters">
             <input
-              type="text"
               id="search"
               class="search"
-              placeholder="Search Task"
+              type="text"
+              placeholder="Search tasks..."
             />
-            <select name="" id="filterStatus">
+            <select id="filterStatus">
               <option value="all">All</option>
               <option value="active">Active</option>
               <option value="completed">Completed</option>
-              <option value="due">Due Soon</option>
+              <option value="due">Due soon</option>
             </select>
-            <select name="" id="sortBy">
-              <option value="createDesc">Newest</option>
+            <select id="sortBy">
+              <option value="createdDesc">Newest</option>
               <option value="createdAsc">Oldest</option>
-              <option value="dueAsc">Due Soon</option>
+              <option value="dueAsc">Due soon</option>
               <option value="priorityHigh">Priority</option>
             </select>
           </div>
-          <div id="tasks" class="list">
-            <!-- task will be coming here -->
+          <div id="tasks" class="list small">
+            <!-- tasks injected here -->
           </div>
         </div>
       </div>
+
       <footer>
         <div>Stored: <span id="count">0</span> tasks</div>
+        
       </footer>
     </div>
 
-    <script src="./app.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
