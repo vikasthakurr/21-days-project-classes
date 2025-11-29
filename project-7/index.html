@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project-7</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <h1>GeeksforGeeks TaskBar</h1>
+        <div class="controls">
+          <button id="noitifyBtn">Enable Notification</button>
+          <button id="clearAllBtn">Clear All</button>
+        </div>
+      </header>
+
+      <div class="top">
+        <div class="card">
+          <form id="taskForm">
+            <div class="row">
+              <div class="field">
+                <label for="title">Title</label>
+                <input
+                  id="title"
+                  type="text"
+                  placeholder="e.g. Finish report"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="priority">Priority</label>
+                <select id="priority">
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                  <option value="low">Low</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="notes">Notes</label>
+                <textarea
+                  id="notes"
+                  placeholder="Optional details..."
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="due">Due date</label>
+                <input id="due" type="date" />
+              </div>
+              <div
+                style="
+                  flex: 0 0 120px;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: flex-end;
+                "
+              >
+                <button class="btn" id="saveBtn">Add Task</button>
+              </div>
+            </div>
+
+            <input type="hidden" id="editingId" />
+          </form>
+        </div>
+
+        <div class="card right-card">
+          <div class="filters">
+            <input
+              type="text"
+              id="search"
+              class="search"
+              placeholder="Search Task"
+            />
+            <select name="" id="filterStatus">
+              <option value="all">All</option>
+              <option value="active">Active</option>
+              <option value="completed">Completed</option>
+              <option value="due">Due Soon</option>
+            </select>
+            <select name="" id="sortBy">
+              <option value="createDesc">Newest</option>
+              <option value="createdAsc">Oldest</option>
+              <option value="dueAsc">Due Soon</option>
+              <option value="priorityHigh">Priority</option>
+            </select>
+          </div>
+          <div id="tasks" class="list">
+            <!-- task will be coming here -->
+          </div>
+        </div>
+      </div>
+      <footer>
+        <div>Stored: <span id="count">0</span> tasks</div>
+      </footer>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
