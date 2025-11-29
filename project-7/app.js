@@ -88,3 +88,38 @@ form.addEventListener("submit", (e) => {
   saveTasks();
   form.reset();
 });
+
+//update operation
+
+function editTask(id) {
+  const t = tasks.find((x) => x.id === id);
+  if (!t) return;
+  titleIn.value = t.title;
+  notesIn.value = t.notes || "";
+  priorityIn.value = t.priority || "low";
+
+  if (t.due) {
+    const dt = new Date(t.due);
+    const pad = (n) => String(n).padStart(2, "0");
+    const local =
+      dt.getFullYear() + "-" + pad(dt.getMonth() + 1) + "-" + pad(dt.getDate());
+    dueIn.value = local;
+  } else {
+    dueIn.value = "";
+  }
+  editingId.value = id;
+  document.getElementById("saveBtn").textContent = "Save";
+  window.scrollTo({ behavior: "smooth", top: 0 });
+}
+
+function removeTask(id) {
+  if (!confirm("want to delete?")) return;
+  tasks = tasks.filter((x) => x.id !== id);
+  saveTasks();
+}
+
+function clearAll() {
+  if (!confirm("want to clear all task")) return;
+  tasks = [];
+  saveTasks();
+}
