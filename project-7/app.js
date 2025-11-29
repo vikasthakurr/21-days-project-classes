@@ -127,3 +127,143 @@ function clearAll() {
 }
 
 clearAllBtn.addEventListener("click", clearAll);
+function render() {
+  const q = search.value.trim().toLowerCase();
+  let out = tasks.slice();
+  if (filterStatus.value === "active") out = out.filter((t) => !t.done);
+  if (filterStatus.value === "completed") out = out.filter((t) => t.done);
+  if (filterStatus.value === "due") {
+    const now = Date.now();
+    const day = 24 * 60 * 60 * 1000;
+    out = out.filter(
+      (t) =>
+        t.due &&
+        new Date(t.due).getTime() - now <= day &&
+        new Date(t.due).getTime() > now
+    );
+  }
+  if (q)
+    out = out.filter((t) =>
+      (t.title + " " + (t.notes || "")).toLowerCase().includes(q)
+    );
+
+  // sort
+  if (sortBy.value === "createdDesc")
+    out.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  if (sortBy.value === "createdAsc")
+    out.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+  if (sortBy.value === "dueAsc")
+    out.sort(
+      (a, b) =>
+        (a.due ? new Date(a.due).getTime() : Infinity) -
+        (b.due ? new Date(b.due).getTime() : Infinity)
+    );
+  if (sortBy.value === "priorityHigh") {
+    const map = { high: 0, medium: 1, low: 2 };
+    out.sort((a, b) => map[a.priority] - map[b.priority]);
+  }
+
+  // render
+  tasksNode.innerHTML = "";
+  if (out.length === 0) {
+    tasksNode.innerHTML =
+      '<div class="small" style="opacity:0.7">No tasks yet — add one on the left.</div>';
+  }
+  out.forEach((t) => {
+    const el = document.createElement("div");
+    el.className = "task" + (t.done ? " completed" : "");
+    const dueSoon =
+      t.due &&
+      new Date(t.due).getTime() - Date.now() <= 24 * 60 * 60 * 1000 &&
+      new Date(t.due).getTime() > Date.now();
+    el.innerHTML = `
+          <div style="width:18px;flex:0 0 18px;margin-top:4px">
+            <input type="checkbox" ${
+              t.done ? "checked" : ""
+            } aria-label="done" />
+          </div>
+          <div class="left">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div class="title">${escapeHtml(t.title)}</div>
+                <div class="meta">${
+                  t.notes
+                    ? escapeHtml(t.notes)
+                    : '<span style="opacity:0.7">No details</span>'
+                }</div>
+              </div>
+              <div class="actions">
+                ${t.priority ? `<span class="chip">${t.priority}</span>` : ""}
+                ${
+                  t.due
+                    ? `<span class="chip" title="Due">${fmtDateISO(
+                        t.due
+                      )}</span>`
+                    : ""
+                }
+                ${
+                  dueSoon
+                    ? `<span class="chip" style="background:rgba(255,80,80,0.08);border:1px solid rgba(255,80,80,0.12);">Due soon</span>`
+                    : ""
+                }
+                <button class="btn ghost" data-action="edit" title="Edit">Edit</button>
+                <button class="btn ghost" data-action="delete" title="Delete">Delete</button>
+              </div>
+            </div>
+            <div class="small">Created: ${fmtDateISO(t.createdAt)}</div>
+          </div>
+        `;
+
+    // wire actions
+    const chk = el.querySelector("input[type=checkbox]");
+    chk.addEventListener("change", () => toggleDone(t.id));
+    el.querySelector("[data-action=edit]").addEventListener("click", () =>
+      editTask(t.id)
+    );
+    el.querySelector("[data-action=delete]").addEventListener("click", () =>
+      removeTask(t.id)
+    );
+
+    tasksNode.appendChild(el);
+  });
+
+  countNode.textContent = tasks.length;
+}
+
+// escape for safety
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+async function ensurePermission() {
+  if (!("Notification" in window)) {
+    alert("Notification are not availble in browser");
+    return false;
+  }
+  if (Notification.permission === "granted") return true;
+  if (Notification.permission === "denied") return false;
+
+  const p = await Notification.requestPermission();
+  return p === "granted";
+}
+
+notifyPermBtn.addEventListener("click", async () => {
+  const ok = await ensurePermission();
+  notifyPermBtn.textContent = ok ? "Notification enable" : "disable";
+});
+
+function sendNotification(title, body) {
+  if (!("Notification" in window)) return;
+  if (Notification.permission !== "granted") return;
+  try {
+    new Notification(title, { body, silent: false });
+  } catch (e) {
+    console.warn("notification failed", e);
+  }
+}
+
+window.addEventListener("beforeunload", saveTasks);
+render();
